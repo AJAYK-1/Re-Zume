@@ -1,6 +1,6 @@
 import React from 'react'
 
-const HomePage = React.lazy(() => import('./Components/HomePage'))
+const HomePage = React.lazy(() => import('./Components/LandingPage/HomePage'))
 
 function App() {
 
