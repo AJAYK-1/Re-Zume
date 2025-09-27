@@ -26,6 +26,10 @@ body,
     .neon-button {
         @apply bg-[#6642bb] ring-violet-400 rounded-lg text-white animate-bounce font-bold shadow-[0_0_20px_rgba(0,255,255,0.3)]
         hover:bg-black hover:animate-none hover:shadow-[0_0_50px_rgba(170,50,255,0.8)]
-        lg:rounded-2xl
+        lg:rounded-2xl;
+    }
+
+    .smallbox {
+        @apply min-w-5 min-h-5 md:w-75 md:h-25 flex flex-col justify-center items-center;
     }
 }

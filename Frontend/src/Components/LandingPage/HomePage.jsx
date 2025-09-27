@@ -8,7 +8,7 @@ function HomePage() {
     <>
       <Navbar />
 
-      <div>
+      <main>
         <section className={`bg-[#ecf8fe] dark:bg-[#111827] min-h-80 pl-3 pt-5 space-y-6
           md:px-8 md:pt-8 md:space-y-10 md:min-h-150
           lg:min-h-120 lg:px-12 lg:pt-15 lg:space-y-10 `}>
@@ -17,7 +17,32 @@ function HomePage() {
           <button className='neon-button p-2 font-poppins md:w-40 md:h-13 md:text-lg lg:w-50 lg:h-15 lg:text-xl'> Build Resume </button>
         </section>
 
-      </div>
+        <section className='p-4 bg-[#ecf8fe] dark:bg-[#111827]'>
+          <section className='p-2 bg-white rounded-xl space-y-5 dark:bg-[#272f42] dark:shadow-[0_0_5px_rgba(100,50,255,0.4)]'>
+            <h1 className='font-michroma font-bold dark:text-white'> Why ATS Friendly Resumes Matters... </h1>
+            <h2 className='font-poppins font-semibold text-slate-500 dark:text-slate-300'> Most resumes are filtered out by ATS before reaching human eyes. An ATS-optimized resume ensures your skills don’t get lost in the system. </h2>
+            <section className='flex flex-wrap justify-evenly space-x-5 space-y-8 dark:text-white text-slate-600'>
+              <div className='smallbox'>
+                <h1 className='font-michroma font-extrabold'> 95% </h1>
+                <h2 className='font-poppins font-semibold'> Companies uses ATS </h2>
+              </div>
+              <div className='smallbox'>
+                <h1 className='font-michroma font-extrabold'> 75% </h1>
+                <h2 className='font-poppins font-semibold'> Resumes filtered out </h2>
+              </div>
+              <div className='smallbox'>
+                <h1 className='font-michroma font-extrabold'> 300% </h1>
+                <h2 className='font-poppins font-semibold'> Higher interview rate </h2>
+              </div>
+              <div className='smallbox'>
+                <h1 className='font-michroma font-extrabold'> 6 Sec </h1>
+                <h2 className='font-poppins font-semibold'> Average review time </h2>
+              </div>
+            </section>
+          </section>
+        </section>
+
+      </main>
 
       <Footer />
     </>
