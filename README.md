@@ -1,39 +1,119 @@
-✈️ Flight Booking
+# 📜 Re-Zume: ATS Friendly Resume Creator
 
-A simple React-based application to display, sort, and filter flight data.
-This project was created as part of the Caxita Tech Solutions – React Developer Machine Test.
+**Re-Zume** is a full stack web application that allows users to create/modify ATS friendly resumes and evaluate their resumes to get past the Applicant Tracking System(ATS). It is developed using MERN, Redux and TailwindCSS.
+
+## 🚀 Features
+
+- 🔒 Secure user authentication (JWT)
+- 📅 Create and modify ATS friendly resumes
+- 🧑‍⚕️ Evaluate user resumes
+- 📊 Admin panel for managing users
+- 🌐 Responsive UI with TailwindCSS and React
 
 
-🛠️ Tech Stack
+## 🛠️ Tech Stack
 
-React (Vite) – frontend framework
-Tailwind CSS – styling
-JavaScript (ES6+) – logic & state handling
+**Frontend**  
+- React.js  
+- TailwindCSS
+- Redux
+
+**Backend**  
+- Node.js  
+- Express.js  
+
+**DataBase**
+- MongoDB (Mongoose ODM)
+
+**Tools**  
+- Git & GitHub  
+- Postman (for API testing)  
+- MongoDB Compass
+
+**Language**
+- JavaScript (ES6+) 
 
 
-1️⃣ Clone the repo
-git clone https://github.com/AJAYK-1/Flight-booking
-cd Flight-booking
+## ⚙️ Installation
 
-2️⃣ Install dependencies
+### Prerequisites
+- Node.js and npm
+- MongoDB (local or Atlas)
+
+### 1. Clone the repo
+```bash
+git clone https://github.com/AJAYK-1/Re-Zume
+cd Re-Zume
+```
+
+### 2. Install dependencies (Backend)
+```bash
+cd Backend
 npm install
+```
 
-3️⃣ Start development server
+### 3. Install dependencies (Frontend)
+```bash
+cd Frontend
+npm install
+```
+
+### 4. Environment Setup
+
+Create a `.env` file in the `backend/` folder with the following:
+
+```env
+PORT=5000
+MONGO_URI= your_mongodb_connection_string
+JWT_SECRET= your_secret_key
+ADMIN_EMAIL = Admin_email
+ADMIN_PASSWORD = Admin_Password
+```
+
+### 5. Run the app
+
+#### Backend
+```bash
+cd backend
+npm start
+```
+
+#### Frontend
+```bash
+cd ../frontend
 npm run dev
+```
 
 The app will be running at:
-👉 http://localhost:5173/
+👉 `http://localhost:5000/`
 
 
-📁 File Structure
+## 📂 Folder Structure
 
-src/
-  data/
-    flights.js        # mock flight data
-  components/
-    FlightCard.jsx    # displays flight details
-    SortOptions.jsx   # sorting dropdown
-    Filters.jsx       # price filter inputs
-    FlightForm.jsx    # from/to search form
-  App.jsx             # main app logic
-  main.jsx            # React entry point
+```
+Re-Zume/
+│
+├── Backend/       # Express API
+│   ├── Controllers/
+│   ├── Models/
+│   ├── Middlewares/
+│   ├── Routes/
+│   └── server.js
+│
+├── Frontend/      # React application
+│   ├── src/
+│   │   ├── Components/
+│   │   │   └── pages/
+│   │   └── App.js
+│   └── index.html
+```
+
+## 👨‍💻 Author
+
+**Ajay Kumar T P**  
+📧 ajaykumartp10@gmail.com  
+🔗 [LinkedIn](https://linkedin.com/in/ajaykumartp) | [GitHub](https://github.com/AJAYK-1)
+
+---
+
+> Feel free to fork this project, suggest improvements, or raise issues!
