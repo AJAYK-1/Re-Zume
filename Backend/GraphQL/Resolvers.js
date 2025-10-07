@@ -1,4 +1,4 @@
-import UserDB from "../Models/UserModel"
+import UserDB from "../Models/UserModel.js"
 
 const resolvers = {
     Query: {
@@ -11,5 +11,14 @@ const resolvers = {
             const userById = await UserDB.findById({ id })
             return userById
         }
+    },
+    Mutation: {
+        createUser: async (_, args) => {
+            const { name, email, password } = args
+            const newUser = await UserDB.create({ name, email, password })
+            await newUser.save()
+        }
     }
 }
+
+export default resolvers

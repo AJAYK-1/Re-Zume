@@ -3,8 +3,10 @@ import { config } from 'dotenv'
 import userRouter from './Routers/userRouter.js'
 import helmet from 'helmet'
 import DataBaseConnection from './Middlewares/DBConnection.js'
-import { buildSchema } from 'graphql'
-import { createHandler } from 'graphql-http/lib/use/express'
+import { ApolloServer } from '@apollo/server'
+import { startStandaloneServer } from '@apollo/server/standalone'
+import { typeDefinitions } from './GraphQL/Schema.js'
+import resolvers from './GraphQL/Resolvers.js'
 
 const app = express()
 config()
@@ -13,22 +15,16 @@ app.use(json())
 app.use(helmet())
 DataBaseConnection()
 
-const schema = buildSchema(` 
-    type Query {
-        hello: String
-    }
-        `)
+const server = new ApolloServer({ typeDefs: typeDefinitions, resolvers })
 
-const root = {
-    hello: () => `Hello World...`,
-}
+const { url } = startStandaloneServer(server, {
+    listen: { port: process.env.PORT || 5000 }
+})
 
-app.use('/graphql', createHandler({
-    schema,
-    rootValue: root,
-}))
+console.log(`Server running at PORT: ${process.env.PORT}`);
 
-app.use('/api/user', userRouter)
 
-app.listen(process.env.PORT || 5000,
-    () => console.log('Server Running at PORT: ', process.env.PORT))
+// app.use('/api/user', userRouter)
+
+// app.listen(process.env.PORT || 5000,
+//     () => console.log('Server Running at PORT: ', process.env.PORT))
