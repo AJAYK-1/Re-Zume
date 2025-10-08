@@ -10,7 +10,7 @@ const UserSchema = new mongoose.Schema({
     //     state: String,
     //     pincode: Number
     // },
-})
+}, { timestamps: true })
 
 const UserDB = mongoose.model('User_Collection', UserSchema)
 export default UserDB

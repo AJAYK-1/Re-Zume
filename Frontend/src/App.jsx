@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import { ThemeContext } from './Components/Contexts/themeContext'
 
 const HomePage = React.lazy(() => import('./Components/LandingPage/HomePage'))
+const SignInPage = React.lazy(() => import('./Components/LandingPage/SignIn'))
 
 function App() {
 
@@ -23,7 +25,10 @@ function App() {
   return (
     <>
       <ThemeContext.Provider value={{ theme, toggleTheme }}>
-        <HomePage />
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/signIn' element={<SignInPage />} />
+        </Routes>
       </ThemeContext.Provider>
     </>
   )

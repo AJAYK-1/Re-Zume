@@ -30,7 +30,7 @@ function Navbar() {
                         <a href="#" className='font-medium text-lg text-white'> Option1 </a>
                         <a href="#" className='font-medium text-lg text-white'> Option2 </a>
                         <a href="#" className='font-medium text-lg text-white'> Option3 </a>
-                        <a href="#" className='font-medium text-lg text-white'> Login </a>
+                        <a href="/signIn" className='font-medium text-lg text-white'> SignIn </a>
                     </section>
                 </aside>
             }
@@ -39,7 +39,7 @@ function Navbar() {
                 <a href="#" className='font-medium text-white'> Option1 </a>
                 <a href="#" className='font-medium text-white'> Option2 </a>
                 <a href="#" className='font-medium text-white'> Option3 </a>
-                <a href="#" className='font-medium text-white'> Login </a>
+                <a href="/signIn" className='font-medium text-white'> SignIn </a>
                 {theme === 'light' ?
                     <FaMoon size={25} onClick={toggleTheme} color='#aae7f7' className='drop-shadow-lg drop-shadow-sky-300' /> :
                     <FaSun size={25} onClick={toggleTheme} color='#fafc8c' className='drop-shadow-md drop-shadow-amber-200' />
