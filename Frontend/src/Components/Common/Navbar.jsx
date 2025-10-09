@@ -9,7 +9,7 @@ function Navbar() {
     return (
         <nav className='flex justify-between p-5 bg-gradient-to-r from-[#4c3386] to-[#8559ed]'>
             <section>
-                <a className='text-xl text-white font-michroma font-extrabold' href='/HomePage'>
+                <a className='text-xl text-white font-michroma font-extrabold' href='/'>
                     <span className='text-blue-300 text-2xl'>R</span>e-<span className='text-blue-300 font-extrabold text-2xl'>Z</span>ume
                 </a>
             </section>

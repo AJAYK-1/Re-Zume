@@ -1,7 +1,6 @@
 export const typeDefinitions = `#graphql
     type Query {
         users: [User]
-        userSignIn(email: String!, password: String!): User
     }
     type User {
         id: ID!
@@ -9,7 +8,14 @@ export const typeDefinitions = `#graphql
         email: String!
         password: String!
     }
+    type Response {
+        success: Boolean!
+        message: String!
+        user: User
+        token: String
+    }
     type Mutation {
-        createUser(name: String!, email: String!, password: String!): User
+        userSignUp(name: String!, email: String!, password: String!): Response
+        userSignIn(email: String!, password: String!): Response
     }
 `
