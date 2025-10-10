@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import { jwtDecode } from "jwt-decode";
@@ -21,6 +21,11 @@ mutation UsersSignIn($email: String!, $password: String!) {
 function SignIn() {
     const [SignIn, { loading, error }] = useMutation(USER_SIGNIN)
     const [formData, setFormData] = useState({})
+
+    const inputRef = useRef(0)
+    useEffect(() => {
+        inputRef.current.focus()
+    }, [])
 
     const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value })
 
@@ -63,12 +68,12 @@ function SignIn() {
 
                         <form className='flex flex-col space-y-10' onSubmit={handleSubmission} >
 
-                            <input
+                            <input ref={inputRef}
                                 type="email" name='email'
                                 onChange={handleChange} required
                                 placeholder='Email'
-                                className='relative-input mt-1.5' />
-                            <div className='input-icons'>
+                                className='relative-input peer/box1 focus:ring-4 ring-purple-700 outline-0 mt-1.5' />
+                            <div className='input-icons peer-focus/box1:ring-4 ring-purple-700'>
                                 <FaEnvelope size={22} color='purple' />
                             </div>
 
@@ -76,8 +81,8 @@ function SignIn() {
                                 type="password" name='password'
                                 onChange={handleChange} required
                                 placeholder='Password'
-                                className='relative-input' />
-                            <div className='input-icons mt-19 ml-57'>
+                                className='relative-input peer/box2 focus:ring-4 ring-purple-700 outline-0' />
+                            <div className='input-icons mt-19 ml-57 peer-focus/box2:ring-4 ring-purple-700'>
                                 <FaLock size={22} color='purple' />
                             </div>
 

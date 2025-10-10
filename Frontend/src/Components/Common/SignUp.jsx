@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import { toast } from 'react-toastify'
@@ -22,6 +22,11 @@ mutation CreateUser($name: String!, $email: String!, $password: String!) {
 function SignUp() {
   const [formData, setFormData] = useState({})
   const [createUser, { loading, error }] = useMutation(USER_SIGNUP)
+
+  const inputRef = useRef(0)
+  useEffect(() => {
+    inputRef.current.focus()
+  }, [])
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value })
 
@@ -68,28 +73,28 @@ function SignUp() {
             <h1 className='text-center text-3xl font-michroma font-bold dark:text-white mb-5'> SignUp </h1>
 
             <form className='flex flex-col space-y-10' onSubmit={Submission}>
-              <input
+              <input ref={inputRef}
                 type="text" name='name'
                 placeholder='Name'
                 onChange={handleChange} required
-                className='relative-input mt-1.5' />
-              <div className='input-icons'>
+                className='relative-input mt-1.5 peer/box1 focus:ring-4 ring-purple-700' />
+              <div className='input-icons peer-focus/box1:ring-4 ring-purple-700'>
                 <FaRegUser size={22} color='purple' />
               </div>
 
               <input type="email" name='email'
                 placeholder='Email'
                 onChange={handleChange} required
-                className='relative-input' />
-              <div className='input-icons mt-19 ml-55'>
+                className='relative-input peer/box2 focus:ring-4 ring-purple-700' />
+              <div className='input-icons mt-19 ml-55 peer-focus/box2:ring-4 ring-purple-700'>
                 <FaRegEnvelope size={22} color='purple' />
               </div>
 
               <input type="password" name='password'
                 placeholder='Password'
                 onChange={handleChange} required
-                className='relative-input' />
-              <div className='input-icons mt-38'>
+                className='relative-input peer/box3 focus:ring-4 ring-purple-700' />
+              <div className='input-icons mt-38 peer-focus/box3:ring-4 ring-purple-700'>
                 <FaLock size={22} color='purple' />
               </div>
 
