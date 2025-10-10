@@ -5,6 +5,8 @@ import { jwtDecode } from "jwt-decode";
 import { gql } from '@apollo/client'
 import { useMutation } from '@apollo/client/react'
 import { FaEnvelope, FaLock } from 'react-icons/fa';
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import signinAnimation from "../../assets/Animations/Login.lottie";
 
 const USER_SIGNIN = gql`
 mutation UsersSignIn($email: String!, $password: String!) {
@@ -45,40 +47,53 @@ function SignIn() {
         <>
             <Navbar />
 
-            <main className='py-10 bg-[#ecf8fe] flex justify-center min-h-full'>
-                <div className='bg-white max-h-100 p-10 rounded-xl'>
-                    <h1 className='text-center text-3xl font-michroma font-bold mb-5'> SignIn </h1>
-                    <form className='flex flex-col space-y-10' onSubmit={handleSubmission} >
+            <main className='p-10 bg-[#ecf8fe] dark:bg-[#111827] flex flex-col-reverse lg:flex-row lg:items-center lg:justify-evenly min-h-150'>
 
-                        <input
-                            type="email" name='email'
-                            onChange={handleChange} required
-                            placeholder='Email'
-                            className='relative bg-violet-200 rounded-4xl font-poppins p-1 pl-13 mt-2 ml-1' />
-                        <div className='absolute bg-white rounded-4xl size-12 border-3 border-violet-200 flex items-center justify-center'>
-                            <FaEnvelope />
-                        </div>
+                <div className='flex justify-center'>
+                    <DotLottieReact
+                        src={signinAnimation}
+                        loop
+                        autoplay
+                        className='size-100 lg:size-150' />
+                </div>
 
-                        <input
-                            type="password" name='password'
-                            onChange={handleChange} required
-                            placeholder='Password'
-                            className='relative bg-violet-200 rounded-4xl p-1 pl-5 font-poppins' />
-                        <div className='absolute bg-white rounded-4xl size-12 border-3 border-violet-200 flex items-center justify-center mt-18 ml-55'>
-                            <FaLock />
-                        </div>
-                        <section className='flex justify-center'>
-                            <button
-                                type='submit'
-                                disabled={loading}
-                                className='bg-violet-400 p-2 rounded-lg w-[60%] text-white font-semibold font-poppins'>
-                                {loading ? 'Signing in...' : 'SignIn'}
-                            </button>
-                        </section>
-                        <p className='font-bold font-poppins'> Don't have an account?
-                            <a href="/signUp" className='underline text-blue-700'> SignUp </a>
-                        </p>
-                    </form>
+                <div className='flex justify-center'>
+                    <div className='bg-white max-h-110 max-w-90 p-10 rounded-xl dark:bg-[#272f42] dark:shadow-[0_0_5px_rgba(100,50,255,0.4)]'>
+                        <h1 className='text-center text-3xl font-michroma font-bold dark:text-white mb-5'> SignIn </h1>
+
+                        <form className='flex flex-col space-y-10' onSubmit={handleSubmission} >
+
+                            <input
+                                type="email" name='email'
+                                onChange={handleChange} required
+                                placeholder='Email'
+                                className='relative-input mt-1.5' />
+                            <div className='input-icons'>
+                                <FaEnvelope size={22} color='purple' />
+                            </div>
+
+                            <input
+                                type="password" name='password'
+                                onChange={handleChange} required
+                                placeholder='Password'
+                                className='relative-input' />
+                            <div className='input-icons mt-19 ml-57'>
+                                <FaLock size={22} color='purple' />
+                            </div>
+
+                            <section className='flex justify-center'>
+                                <button
+                                    type='submit'
+                                    disabled={loading}
+                                    className='button-1'>
+                                    {loading ? 'Signing in...' : 'SignIn'}
+                                </button>
+                            </section>
+                            <p className='font-bold font-poppins dark:text-white text-center'> Don't have an account?
+                                <a href="/signUp" className='underline text-blue-700 dark:text-sky-400'> SignUp </a>
+                            </p>
+                        </form>
+                    </div>
                 </div>
             </main>
 

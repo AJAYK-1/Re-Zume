@@ -32,4 +32,16 @@ body,
     .smallbox {
         @apply min-w-5 min-h-5 md:w-75 md:h-25 flex flex-col justify-center items-center;
     }
+
+    .relative-input {
+        @apply relative bg-violet-200 rounded-4xl font-poppins p-1.5 pl-13 mx-1;
+    }
+
+    .input-icons {
+        @apply absolute bg-white rounded-4xl size-12 border-3 border-violet-200 flex items-center justify-center
+    }
+
+    .button-1 {
+        @apply bg-violet-400 p-2 rounded-lg w-[60%] text-white font-semibold font-poppins;
+    }
 }
