@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { ThemeContext } from '../Contexts/themeContext';
+import { ThemeContext } from '../Constants/themeContext';
 import { FaBars, FaMoon, FaSun, FaTimes } from "react-icons/fa";
 
 function Navbar() {

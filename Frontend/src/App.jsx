@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { ThemeContext } from './Components/Contexts/themeContext'
+import { ThemeContext } from './Components/Constants/themeContext'
 import { ToastContainer } from "react-toastify";
 
 const HomePage = React.lazy(() => import('./Components/Common/HomePage'))
