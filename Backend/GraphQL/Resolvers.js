@@ -1,3 +1,4 @@
+import ResumeDB from "../Models/ResumeModel.js"
 import UserDB from "../Models/UserModel.js"
 import jwt from 'jsonwebtoken'
 
@@ -15,15 +16,16 @@ const resolvers = {
                 console.log(name, email, password);
 
                 if (email === process.env.ADMIN_EMAIL)
-                    return { success: false, message: 'User already exists...' }
+                    return { success: false, message: 'Account already exists...' }
 
                 const userExists = await UserDB.findOne({ email })
                 if (userExists)
-                    return { success: false, message: 'User already exists...' }
+                    return { success: false, message: 'Account already exists...' }
 
                 const newUser = await UserDB.create({ name, email, password })
-                await newUser.save()
-                return { success: true, message: 'User SignUp successful...' }
+                if (newUser)
+                    return { success: true, message: 'SignUp successful...' }
+                return { success: false, message: 'SignUp failed. Please try again...' }
             } catch (error) {
                 console.log(error.message);
                 return { success: false, message: "Server Error" }
@@ -47,6 +49,25 @@ const resolvers = {
 
                 const token = jwt.sign({ role: 'User', email: validUser.email }, process.env.JWT_SECRET, { expiresIn: '1h' })
                 return { success: true, message: 'Login Successful', token }
+            } catch (error) {
+                console.log(error.message);
+                return { success: false, message: "Server Error" }
+            }
+        },
+        createResume: async (_, args) => {
+            try {
+                const { userId, name, email, phone, gender,
+                    address, linkedIn, gitHub, portfolio, education,
+                    experience, skills, projects, certifications } = args.resume
+
+                const newResume = await ResumeDB.create({
+                    userId, name, email, phone, gender,
+                    address, linkedIn, gitHub, portfolio, education,
+                    experience, skills, projects, certifications
+                })
+                if (newResume)
+                    return { success: true, message: 'Resume created successfully...' }
+                return { success: false, message: 'Error creating Resume. Please try again...' }
             } catch (error) {
                 console.log(error.message);
                 return { success: false, message: "Server Error" }
