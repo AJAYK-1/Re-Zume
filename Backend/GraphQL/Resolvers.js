@@ -1,13 +1,32 @@
 import ResumeDB from "../Models/ResumeModel.js"
 import UserDB from "../Models/UserModel.js"
 import jwt from 'jsonwebtoken'
+import ResumeGenerator from "../Utilities/ResumeGenerator.js"
 
 const resolvers = {
     Query: {
         users: async () => {
-            const allUsersData = await UserDB.find()
-            return allUsersData
+            try {
+                const allUsersData = await UserDB.find()
+                if (allUsersData.length === 0)
+                    return { success: false, message: 'Error Fetching user data...' }
+                return { success: true, message: 'Data found...', user: allUsersData }
+            } catch (error) {
+                console.log(error.message);
+                return { success: false, message: "Server Error" }
+            }
         },
+        myResumes: async (_, args) => {
+            try {
+                const userId = args.userId
+                const fetchedResumes = await ResumeDB.find({ userId })
+
+                return fetchedResumes
+            } catch (error) {
+                console.log(error.message);
+                return { success: false, message: "Server Error" }
+            }
+        }
     },
     Mutation: {
         userSignUp: async (_, args) => {
@@ -56,15 +75,17 @@ const resolvers = {
         },
         createResume: async (_, args) => {
             try {
-                const { userId, name, email, phone, gender,
+                const { userId, name, summary, email, phone, gender,
                     address, linkedIn, gitHub, portfolio, education,
                     experience, skills, projects, certifications } = args.resume
 
+                const fileName = await ResumeGenerator(args.resume)
                 const newResume = await ResumeDB.create({
-                    userId, name, email, phone, gender,
+                    userId, name, summary, email, phone, gender,
                     address, linkedIn, gitHub, portfolio, education,
-                    experience, skills, projects, certifications
+                    experience, skills, projects, certifications, resumefile: fileName
                 })
+
                 if (newResume)
                     return { success: true, message: 'Resume created successfully...' }
                 return { success: false, message: 'Error creating Resume. Please try again...' }
@@ -72,7 +93,7 @@ const resolvers = {
                 console.log(error.message);
                 return { success: false, message: "Server Error" }
             }
-        }
+        },
     }
 }
 

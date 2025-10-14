@@ -11,7 +11,7 @@ function HomePage() {
     <>
       <Navbar />
 
-      <main>
+      <main className='overflow-hidden'>
         <HeroSection />
         <InfoSection />
         <LogosSection />

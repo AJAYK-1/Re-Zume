@@ -7,6 +7,8 @@ import { useMutation } from '@apollo/client/react'
 import { FaEnvelope, FaLock } from 'react-icons/fa';
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import signinAnimation from "../../assets/Animations/Login.lottie";
+import { toast } from 'react-toastify'
+import { useNavigate } from "react-router-dom";
 
 const USER_SIGNIN = gql`
 mutation UsersSignIn($email: String!, $password: String!) {
@@ -29,6 +31,7 @@ function SignIn() {
 
     const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value })
 
+    const navigate = useNavigate()
     const handleSubmission = async (e) => {
         try {
             e.preventDefault()
@@ -38,9 +41,12 @@ function SignIn() {
                 localStorage.setItem('token', response.token)
                 const decodedToken = jwtDecode(response.token)
                 localStorage.setItem('role', decodedToken.role)
-                alert(response.message)
+                toast.success(response.message)
+                setTimeout(() => {
+                    navigate('/build-resume')
+                }, 2000);
             } else {
-                alert(response.message)
+                toast.error(response.message)
             }
         } catch (error) {
             console.error("GraphQL Error: ", error.message);
@@ -52,7 +58,7 @@ function SignIn() {
         <>
             <Navbar />
 
-            <main className='p-10 bg-[#ecf8fe] dark:bg-[#111827] flex flex-col-reverse lg:flex-row lg:items-center lg:justify-evenly min-h-150'>
+            <main className='p-10 background-1 flex flex-col-reverse lg:flex-row lg:items-center lg:justify-evenly min-h-150'>
 
                 <div className='flex justify-center'>
                     <DotLottieReact

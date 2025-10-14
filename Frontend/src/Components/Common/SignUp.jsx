@@ -58,7 +58,7 @@ function SignUp() {
     <>
       <Navbar />
 
-      <main className='p-10 bg-[#ecf8fe] dark:bg-[#111827] flex justify-center flex-col-reverse lg:flex-row lg:items-center lg:justify-evenly min-h-160'>
+      <main className='p-10 background-1 flex justify-center flex-col-reverse lg:flex-row lg:items-center lg:justify-evenly min-h-160'>
 
         <div className='flex justify-center'>
           <DotLottieReact

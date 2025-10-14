@@ -2,6 +2,7 @@ export const typeDefinitions = `#graphql
     type Query {
         users: [User]
         resumes: [Resume]
+        myResumes(userId: ID!): [Resume]
     }
     type User {
         id: ID!
@@ -47,7 +48,8 @@ export const typeDefinitions = `#graphql
         id: ID!
         userId: ID!
         name: String!
-        phone: Int!
+        summary: String!
+        phone: String!
         email: String!
         gender: String!
         address: Address!
@@ -59,6 +61,7 @@ export const typeDefinitions = `#graphql
         skills: Skills!
         projects: [Projects!]!
         certifications: [Certifications!]!
+        resumefile: String
     }
     type Response {
         success: Boolean!
@@ -79,7 +82,7 @@ export const typeDefinitions = `#graphql
         state: String!
         district: String!
         city: String!
-        pincode: Int!
+        pincode: String!
     }
     input EducationInput {
         university: String!
@@ -111,7 +114,8 @@ export const typeDefinitions = `#graphql
     input ResumeInput {
         userId: ID!
         name: String!
-        phone: Int!
+        summary: String!
+        phone: String!
         email: String!
         gender: String!
         address: AddressInput!
@@ -123,5 +127,6 @@ export const typeDefinitions = `#graphql
         skills: SkillsInput!
         projects: [ProjectsInput!]!
         certifications: [CertificationsInput!]!
+        resumefile: String
     }
 `

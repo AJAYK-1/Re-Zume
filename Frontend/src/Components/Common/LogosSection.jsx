@@ -4,8 +4,8 @@ import { logos } from "../Constants/companyLogos";
 function LogosSection() {
     return (
         <>
-            <div className='bg-[#ecf8fe] dark:bg-[#111827] py-20 overflow-hidden'>
-                <h1 className='text-center text-2xl font-michroma font-bold dark:text-white'> Get Hired at FAANG and more</h1>
+            <div className='background-1 py-20 overflow-hidden'>
+                <h1 className='text-center text-2xl font-michroma font-bold dark:text-white'> Get Hired at FAANG and more...</h1>
                 <section className='flex gap-5 lg:gap-10 animate-marquee hover:[animation-play-state:paused] py-10'>
                     {[...logos, ...logos, ...logos]?.map((logo) => {
                         return (

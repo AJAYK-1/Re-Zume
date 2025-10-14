@@ -33,7 +33,8 @@ const projectsSchema = new mongoose.Schema({
 const ResumeSchema = new mongoose.Schema({
     userId: { type: Schema.Types.ObjectId, ref: 'User_Collection' },
     name: { type: String, required: true },
-    phone: { type: Number, required: true },
+    summary: { type: String, require: true },
+    phone: { type: String, required: true },
     email: { type: String, required: true, lowercase: true },
     gender: { type: String, enum: ['male', 'female', 'other'], required: true },
     address: { type: addressSchema, required: true },
@@ -51,6 +52,7 @@ const ResumeSchema = new mongoose.Schema({
         certificateName: { type: String, required: true },
         provider: { type: String, required: true }
     }],
+    resumefile: { type: String, default: null },
 }, { timestamps: true })
 
 const ResumeDB = mongoose.model('Resume_Collection', ResumeSchema)
