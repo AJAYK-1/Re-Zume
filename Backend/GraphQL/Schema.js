@@ -18,6 +18,7 @@ export const typeDefinitions = `#graphql
         pincode: Int!
     }
     type Education {
+        course: String!
         university: String!
         institution: String!
         start: String
@@ -27,6 +28,7 @@ export const typeDefinitions = `#graphql
     type Experience {
         company: String!
         position: String!
+        place: String!
         from: String!
         to: String
         description: String!
@@ -85,6 +87,7 @@ export const typeDefinitions = `#graphql
         pincode: String!
     }
     input EducationInput {
+        course: String!
         university: String!
         institution: String!
         start: String
@@ -94,6 +97,7 @@ export const typeDefinitions = `#graphql
     input ExperienceInput {
         company: String!
         position: String!
+        place: String!
         from: String!
         to: String
         description: String!

@@ -9,6 +9,7 @@ const addressSchema = new mongoose.Schema({
 })
 
 const educationSchema = new mongoose.Schema({
+    course: { type: String, required: true },
     university: { type: String, required: true },
     institution: { type: String, required: true },
     start: { type: Date, required: true },
@@ -19,6 +20,7 @@ const educationSchema = new mongoose.Schema({
 const experienceSchema = new mongoose.Schema({
     company: { type: String, required: true },
     position: { type: String, required: true },
+    place: { type: String, required: true },
     from: { type: Date, required: true },
     to: { type: Date, default: null },
     description: { type: String, required: true },
@@ -44,8 +46,8 @@ const ResumeSchema = new mongoose.Schema({
     education: { type: educationSchema, required: true },
     experience: { type: [experienceSchema], default: [] },
     skills: {
-        professional: [{ type: String, required: true }],
-        soft: [{ type: String, required: true }],
+        professional: { type: [String], required: true },
+        soft: { type: [String], required: true },
     },
     projects: { type: [projectsSchema], default: [] },
     certifications: [{
