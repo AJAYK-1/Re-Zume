@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { ThemeContext } from '../Constants/themeContext';
+import { ThemeContext } from '../Utilities/themeContext';
 import { FaBars, FaMoon, FaSun, FaTimes } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom'
 
@@ -19,7 +19,7 @@ function Navbar() {
     return (
         <nav className='flex justify-between p-5 md:py-5 md:px-20 bg-gradient-to-r from-[#4c3386] to-[#8559ed]'>
             <section>
-                <a className='text-xl text-white font-michroma font-extrabold' href='/'>
+                <a className='text-xl text-white font-michroma font-extrabold' href={role === 'User' ? '/user-home' : '/'}>
                     <span className='text-blue-300 text-2xl'>R</span>e-<span className='text-blue-300 font-extrabold text-2xl'>Z</span>ume
                 </a>
             </section>
@@ -38,6 +38,7 @@ function Navbar() {
                     <FaTimes size={30} onClick={() => setSideBar(false)} color='white' className='ml-auto mr-5 mt-5' />
                     <section className='flex flex-col mt-8 ml-6 space-y-5'>
                         {role === 'User' ? <>
+                            <a href="/user-home" className='nav-links text-lg'> Home </a>
                             <a href="#" className='nav-links text-lg'> Resume Builder </a>
                             <a href="#" className='nav-links text-lg'> ATS Checker </a>
                             <a href="#" className='nav-links text-lg'> Resume Modifier </a>
@@ -58,10 +59,10 @@ function Navbar() {
             }
             <section className='hidden md:flex space-x-5 items-center'>
                 {role === 'User' ? <>
+                    <a href="/user-home" className='nav-links'> Home </a>
                     <a href="#" className='nav-links'> Resume Builder </a>
                     <a href="#" className='nav-links'> ATS Checker </a>
                     <a href="#" className='nav-links'> Resume Modifier </a>
-                    <a href="#" className='nav-links'> My Collection </a>
                     <button onClick={handleLogout} className='logout'> Logout </button>
                 </> : role === 'Admin' ? <>
                     <a href="#" className='nav-links'> Dashboard </a>

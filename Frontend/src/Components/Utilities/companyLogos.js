@@ -11,15 +11,15 @@ import Flipkart from "../../assets/Logos/flipkart.png";
 import Wipro from "../../assets/Logos/wipro.png";
 
 export const logos = [
-    { id: 0, imgPath: Meta, alt: 'Meta' },
-    { id: 1, imgPath: Amazon, alt: 'Amazon' },
-    { id: 2, imgPath: Apple, alt: 'Apple' },
-    { id: 3, imgPath: Netflix, alt: 'Netflix' },
-    { id: 4, imgPath: Google, alt: 'Google' },
-    { id: 5, imgPath: IBM, alt: 'IBM' },
-    { id: 6, imgPath: Tesla, alt: 'Tesla' },
-    { id: 7, imgPath: Capgemini, alt: 'Capgemini' },
-    { id: 8, imgPath: Microsoft, alt: 'Microsoft' },
-    { id: 9, imgPath: Flipkart, alt: 'Flipkart' },
-    { id: 10, imgPath: Wipro, alt: 'Wipro' },
+    { imgPath: Meta, alt: 'Meta' },
+    { imgPath: Amazon, alt: 'Amazon' },
+    { imgPath: Apple, alt: 'Apple' },
+    { imgPath: Netflix, alt: 'Netflix' },
+    { imgPath: Google, alt: 'Google' },
+    { imgPath: IBM, alt: 'IBM' },
+    { imgPath: Tesla, alt: 'Tesla' },
+    { imgPath: Capgemini, alt: 'Capgemini' },
+    { imgPath: Microsoft, alt: 'Microsoft' },
+    { imgPath: Flipkart, alt: 'Flipkart' },
+    { imgPath: Wipro, alt: 'Wipro' },
 ]

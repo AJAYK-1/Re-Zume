@@ -43,7 +43,7 @@ function SignIn() {
                 localStorage.setItem('role', decodedToken.role)
                 toast.success(response.message)
                 setTimeout(() => {
-                    navigate('/build-resume')
+                    navigate('/user-home')
                 }, 2000);
             } else {
                 toast.error(response.message)
