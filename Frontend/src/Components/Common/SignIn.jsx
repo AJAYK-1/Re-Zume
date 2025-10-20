@@ -50,7 +50,7 @@ function SignIn() {
             }
         } catch (error) {
             console.error("GraphQL Error: ", error.message);
-            alert("Something went Wrong! Please try again later...")
+            toast.error("Something went Wrong! Please try again later...")
         }
     }
 

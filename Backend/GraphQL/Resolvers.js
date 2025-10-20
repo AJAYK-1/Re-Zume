@@ -54,11 +54,6 @@ const resolvers = {
             try {
                 const { email, password } = args
 
-                if (email === process.env.ADMIN_EMAIL || password === process.env.ADMIN_PASSWORD) {
-                    const token = jwt.sign({ role: 'Admin', email: process.env.ADMIN_EMAIL }, process.env.JWT_SECRET, { expiresIn: '1h' })
-                    return { success: true, message: 'Redirecting to Admin Dashboard...', token }
-                }
-
                 const validUser = await UserDB.findOne({ email })
                 if (!validUser)
                     return { success: false, message: 'No user found...' }
@@ -68,6 +63,19 @@ const resolvers = {
 
                 const token = jwt.sign({ role: 'User', email: validUser.email }, process.env.JWT_SECRET, { expiresIn: '1h' })
                 return { success: true, message: 'Login Successful', token }
+            } catch (error) {
+                console.log(error.message);
+                return { success: false, message: "Server Error" }
+            }
+        },
+        adminLogin: async (_, args) => {
+            try {
+                const { name, password } = args
+                if (name !== process.env.ADMIN_ID || password !== process.env.ADMIN_PASSWORD)
+                    return { success: false, message: 'Admin Login Success, Redirecting to admin dashboard...' }
+
+                const token = jwt.sign({ role: 'Admin', email: process.env.ADMIN_ID }, process.env.JWT_SECRET, { expiresIn: '1h' })
+                return { success: true, message: 'Admin Login Success, Redirecting to admin dashboard...', token: token }
             } catch (error) {
                 console.log(error.message);
                 return { success: false, message: "Server Error" }

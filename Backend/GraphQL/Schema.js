@@ -75,6 +75,7 @@ export const typeDefinitions = `#graphql
 
     type Mutation {
         userSignUp(name: String!, email: String!, password: String!): Response
+        adminLogin(name: String!, password: String!): Response
         userSignIn(email: String!, password: String!): Response
         createResume(resume: ResumeInput!): Response
     }
