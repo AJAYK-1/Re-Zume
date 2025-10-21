@@ -76,6 +76,10 @@ body,
     .image-scroll {
         @apply flex-shrink-0 w-24 h-24 md:w-40 md:h-25 lg:w-50  flex items-center justify-center ring-1 ring-violet-400 rounded-full bg-[#ffffff] dark:bg-[#000000] shadow-xl dark:shadow-[0_0_15px_rgba(170,50,255,0.8)];
     }
+
+    .button-2 {
+        @apply flex items-center gap-2 border-2 border-white p-2 rounded-lg hover:cursor-pointer bg-slate-800 text-white transform hover:scale-110 duration-300;
+    }
 }
 
 @keyframes marquee{

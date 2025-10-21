@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 export const Authorization = async (request) => {
     try {
         const authHeader = request.headers.authorization || ''
+        
         if (!authHeader.startsWith('Bearer '))
             return { user: null, isAuthenticated: false }
 

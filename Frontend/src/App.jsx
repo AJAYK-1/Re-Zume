@@ -10,6 +10,7 @@ const SignUpPage = React.lazy(() => import('./Components/Common/SignUp'))
 const ErrorPage = React.lazy(() => import('./Components/Common/Error'))
 
 const UserHome = React.lazy(() => import('./Components/User/UserHome'))
+const ResumePreview = React.lazy(() => import('./Components/User/ResumePreview'))
 const BuildResume = React.lazy(() => import('./Components/User/BuildResume'))
 const ATSChecker = React.lazy(() => import('./Components/User/ATSChecker'))
 const ResumeModifier = React.lazy(() => import('./Components/User/ResumeModifier'))
@@ -48,6 +49,7 @@ function App() {
             <Route path='*' element={<ErrorPage />} />
 
             <Route path='/user-home' element={<UserHome />} />
+            <Route path='/resume-preview' element={<ResumePreview />} />
             <Route path='/build-resume' element={<BuildResume />} />
             <Route path='/ats-checker' element={<ATSChecker />} />
             <Route path='/resume-modifier' element={<ResumeModifier />} />

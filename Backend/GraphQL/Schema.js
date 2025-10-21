@@ -49,6 +49,7 @@ export const typeDefinitions = `#graphql
     type Resume {
         id: ID!
         userId: ID!
+        resumeType: String!
         name: String!
         summary: String!
         phone: String!
@@ -118,6 +119,7 @@ export const typeDefinitions = `#graphql
     }
     input ResumeInput {
         userId: ID!
+        resumeType: String!
         name: String!
         summary: String!
         phone: String!

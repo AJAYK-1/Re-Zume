@@ -16,8 +16,10 @@ const resolvers = {
                 return { success: false, message: "Server Error" }
             }
         },
-        myResumes: async (_, args) => {
+        myResumes: async (_, args, context) => {
             try {
+                if (!context.isAuthenticated) return { success: false, message: 'Unauthorised user...' }
+                
                 const userId = args.userId
                 const fetchedResumes = await ResumeDB.find({ userId })
 
@@ -32,7 +34,6 @@ const resolvers = {
         userSignUp: async (_, args) => {
             try {
                 const { name, email, password } = args
-                console.log(name, email, password);
 
                 if (email === process.env.ADMIN_EMAIL)
                     return { success: false, message: 'Account already exists...' }
@@ -61,7 +62,7 @@ const resolvers = {
                 if (validUser.password !== password)
                     return { success: false, message: 'Incorrect Username or Password' }
 
-                const token = jwt.sign({ role: 'User', email: validUser.email }, process.env.JWT_SECRET, { expiresIn: '1h' })
+                const token = jwt.sign({ role: 'User', id: validUser.id }, process.env.JWT_SECRET, { expiresIn: '1h' })
                 return { success: true, message: 'Login Successful', token }
             } catch (error) {
                 console.log(error.message);
@@ -81,8 +82,10 @@ const resolvers = {
                 return { success: false, message: "Server Error" }
             }
         },
-        createResume: async (_, args) => {
+        createResume: async (_, args, context) => {
             try {
+                if (!context.isAuthenticated) return { success: false, message: 'Unauthorised User...' }
+
                 const { userId, name, summary, email, phone, gender,
                     address, linkedIn, gitHub, portfolio, education,
                     experience, skills, projects, certifications } = args.resume

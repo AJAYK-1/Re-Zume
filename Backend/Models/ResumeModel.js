@@ -34,6 +34,7 @@ const projectsSchema = new mongoose.Schema({
 
 const ResumeSchema = new mongoose.Schema({
     userId: { type: Schema.Types.ObjectId, ref: 'User_Collection' },
+    resumeType: { type: String, enum: ['Classic', 'Minimal', 'Modern', 'Professional'], default: 'Classic', required: true },
     name: { type: String, required: true },
     summary: { type: String, require: true },
     phone: { type: String, required: true },
