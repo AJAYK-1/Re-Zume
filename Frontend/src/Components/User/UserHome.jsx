@@ -29,6 +29,7 @@ const MyResumes = gql`
     gitHub
     portfolio
     education {
+      course
       university
       institution
       start
@@ -38,6 +39,7 @@ const MyResumes = gql`
     experience {
       company
       position
+      place
       from
       to
       description

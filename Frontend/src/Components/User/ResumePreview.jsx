@@ -24,7 +24,7 @@ function ResumePreview() {
                     </button>
                 </section>
             </nav>
-            <main className='bg-slate-900 w-full h-full p-2 flex justify-center'>
+            <main className='bg-slate-900 min-h-screen overflow-auto flex justify-center items-center p-5'>
                 <ResumeGeneratorClassic resumeData={resume} box={false} />
             </main>
 
