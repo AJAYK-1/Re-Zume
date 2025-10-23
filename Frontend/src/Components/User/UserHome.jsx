@@ -80,12 +80,12 @@ function UserHome() {
     <>
       <Navbar />
       <main className='background-1 min-h-full'>
-        <h1> Your Collection </h1>
+        <h1 className='main-heading text-center mb-10'> Your Collection </h1>
 
         {loading ? <div> Loading... </div> :
           resumes.length === 0 ?
             <div> No Resumes Found... </div> :
-            <div className='grid grid-cols-1 place-self-center gap-5'>
+            <div className='grid grid-cols-1 place-self-center gap-5 md:grid-cols-2 md:gap-20'>
               {resumes?.map((resume) =>
                 <div key={resume?.id} onClick={() => navigate('/resume-preview', { state: { resume: resume } })} className='h-100 w-60 hover:cursor-pointer'>
                   {resume?.resumeType === "Classic" && <ResumeGeneratorClassic resumeData={resume} box={true} />}

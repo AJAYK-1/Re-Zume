@@ -11,7 +11,7 @@ function HeroSection() {
       <section className='background-1 min-h-80 px-3 pt-5 pb-15 space-y-10
           md:px-8 md:pt-8 md:space-y-10 md:min-h-80
           lg:min-h-110 lg:px-30 lg:pt-15 lg:space-y-10 lg:pb-10'>
-        <h1 className='text-black dark:text-white text-2xl font-michroma font-semibold pt-5 drop-shadow-lg drop-shadow-slate-400 md:text-3xl lg:text-4xl 2xl:text-5xl'> Re-Zume: Resumes That Get You Hired </h1>
+        <h1 className='main-heading'> Re-Zume: Resumes That Get You Hired </h1>
 
         <div className='lg:grid grid-cols-2 '>
           <div className='md:pt-10'>

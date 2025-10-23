@@ -3,48 +3,52 @@ import { Page, Text, View, Document, StyleSheet, Font, Link } from "@react-pdf/r
 
 const styles = StyleSheet.create({
     page: {
-        padding: 36,
-        fontSize: 11,
+        padding: 50,
+        fontSize: 10,
         fontFamily: 'Helvetica',
-        color: '#111'
+        color: '#111',
+        lineHeight: 1.5
     },
     header: {
         textAlign: "center",
         marginBottom: 5
     },
     name: {
-        fontSize: 20,
-        fontWeight: "bold"
+        fontFamily: 'Times-Roman',
+        fontSize: 28,
+        fontWeight: "normal",
+        marginBottom: 25
     },
     contact: {
         fontSize: 10,
         marginBottom: 6
     },
     links: {
+        fontSize: 11,
         marginBottom: 8
-    },
-    section: {
-        marginBottom: 10
     },
     sectionTitle: {
         fontSize: 12,
-        marginTop: 8,
-        marginBottom: 4,
+        marginTop: 10,
+        marginBottom: 5,
         fontWeight: "bold",
-        borderBottomWidth: 1,
-        borderColor: "#e0e0e0",
-        paddingBottom: 4
+    },
+    miniTitle: {
+        fontSize: 10,
+        marginBottom: 5,
+        fontWeight: 'bold'
     },
     paragraph: {
         textAlign: "justify",
-        marginBottom: 4
+        marginBottom: 4,
+        fontWeight: 'normal'
     },
     listItem: {
         marginBottom: 2,
         flexDirection: "row"
     },
     bullet: {
-        width: 10
+        width: 5,
     },
     bulletText: {
         flex: 1
@@ -89,16 +93,60 @@ function ResumePDF({ resumeData }) {
                     <Text style={styles.sectionTitle}>EXPERIENCE</Text>
                     {experience.map((exp, index) =>
                         <View key={index}>
-                            <Text>{exp.position}</Text>
-                            <Text>{exp.company} | {exp.place} | {exp.from} - {exp.to}</Text>
+                            <Text style={styles.miniTitle}>{exp.position}</Text>
+                            <Text style={styles.miniTitle}>{exp.company} | {exp.place} | {exp.from} - {exp.to}</Text>
                             {exp.description.map((desc) =>
-                                <View>
-                                    <Text style={{ width: 10, marginRight: 10 }}>•</Text>
-                                    <Text style={{ flex: 1 }}>
-                                        <Text style={{ marginLeft: 10 }}>{desc} </Text>
-                                    </Text>
+                                <View style={styles.listItem}>
+                                    <Text style={styles.bullet}>•</Text>
+                                    <Text style={{ marginLeft: 5 }}>{desc}</Text>
                                 </View>
                             )}
+                        </View>
+                    )}
+                </View>
+
+                <View>
+                    <Text style={styles.sectionTitle}>PROFESSIONAL SKILLS</Text>
+                    <Text style={styles.listItem}>
+                        <Text style={styles.bullet}>•</Text>
+                        <Text style={{ marginLeft: 10 }}>  {skills.professional.join(', ')}</Text>
+                    </Text>
+                </View>
+
+                <View>
+                    <Text style={styles.sectionTitle}>SOFT SKILLS</Text>
+                    <Text style={styles.listItem}>
+                        <Text style={styles.bullet}>•</Text>
+                        <Text style={{ marginLeft: 10 }}>  {skills.soft.join(', ')}</Text>
+                    </Text>
+                </View>
+
+                <View>
+                    <Text style={styles.sectionTitle}>EDUCATION</Text>
+                    <Text style={styles.miniTitle}>{education.course}</Text>
+                    <Text >{education.university} | {education.institution} | {education.start} - {education.end}</Text>
+                </View>
+
+                <View>
+                    <Text style={styles.sectionTitle}>PROJECTS</Text>
+                    {projects.map((project, index) =>
+                        <View style={styles.listItem} key={index}>
+                            <Text style={styles.bullet}>&bull;</Text>
+                            <Text style={{ marginLeft: 5, fontWeight: 'bold', textAlign: 'justify' }}>{project.title}:
+                                <Text style={{ fontWeight: 'normal' }}>
+                                    &nbsp;{project.details} {project.link && <Link src={`${project.link}`}>[Project link]</Link>}
+                                </Text>
+                            </Text>
+                        </View>
+                    )}
+                </View>
+
+                <View>
+                    <Text style={styles.sectionTitle}>CERTIFICATIONS AND WORKSHOPS</Text>
+                    {certifications.map((cert, index) =>
+                        <View key={index} style={styles.listItem}>
+                            <Text style={styles.bullet}>&bull;</Text>
+                            <Text style={{ marginLeft: 5 }}>{cert.certificateName} &mdash; {cert.provider}</Text>
                         </View>
                     )}
                 </View>

@@ -23,6 +23,10 @@ body,
 }
 
 @layer {
+    .main-heading {
+        @apply text-black dark:text-white text-2xl font-michroma font-semibold pt-5 drop-shadow-lg drop-shadow-slate-400 md:text-3xl lg:text-4xl 2xl:text-5xl;
+    }
+
     .tag-line {
         @apply text-slate-700 dark:text-slate-300 text-lg text-justify font-poppins md:text-xl lg:text-2xl 2xl:text-2xl drop-shadow-sm drop-shadow-teal-100;
     }
