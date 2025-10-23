@@ -21,7 +21,7 @@ export const typeDefinitions = `#graphql
         course: String!
         university: String!
         institution: String!
-        start: String
+        start: String!
         end: String
         place: String!
     }
@@ -31,7 +31,7 @@ export const typeDefinitions = `#graphql
         place: String!
         from: String!
         to: String
-        description: String!
+        description: [String!]!
     }
     type Projects {
         title: String!
@@ -92,7 +92,7 @@ export const typeDefinitions = `#graphql
         course: String!
         university: String!
         institution: String!
-        start: String
+        start: String!
         end: String
         place: String!
     }

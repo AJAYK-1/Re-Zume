@@ -19,7 +19,7 @@ const resolvers = {
         myResumes: async (_, args, context) => {
             try {
                 if (!context.isAuthenticated) return { success: false, message: 'Unauthorised user...' }
-                
+
                 const userId = args.userId
                 const fetchedResumes = await ResumeDB.find({ userId })
 
@@ -89,6 +89,17 @@ const resolvers = {
                 const { userId, name, summary, email, phone, gender,
                     address, linkedIn, gitHub, portfolio, education,
                     experience, skills, projects, certifications } = args.resume
+
+                experience.map((exp) => {
+                    exp.from = new Date(exp.from).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+                    exp.to = new Date(exp.to).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+                    exp.description = exp.description.split('. ').map((desc) => 
+                        desc.endsWith('.') ? desc : desc += '.'
+                    )
+                })
+
+                education.start = new Date(education.start).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+                education.end = new Date(education.end).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
 
                 const fileName = await ResumeGenerator(args.resume)
                 const newResume = await ResumeDB.create({

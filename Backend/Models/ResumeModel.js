@@ -12,8 +12,8 @@ const educationSchema = new mongoose.Schema({
     course: { type: String, required: true },
     university: { type: String, required: true },
     institution: { type: String, required: true },
-    start: { type: Date, required: true },
-    end: { type: Date, default: null },
+    start: { type: String, required: true },
+    end: { type: String, default: 'Ongoing' },
     place: { type: String, required: true }
 })
 
@@ -21,9 +21,9 @@ const experienceSchema = new mongoose.Schema({
     company: { type: String, required: true },
     position: { type: String, required: true },
     place: { type: String, required: true },
-    from: { type: Date, required: true },
-    to: { type: Date, default: null },
-    description: { type: String, required: true },
+    from: { type: String, required: true },
+    to: { type: String, default: 'Ongoing' },
+    description: { type: [String], required: true },
 })
 
 const projectsSchema = new mongoose.Schema({
