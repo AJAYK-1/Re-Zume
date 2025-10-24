@@ -1,5 +1,5 @@
 import React from 'react'
-import { logos } from "../Utilities/companyLogos";
+import { logos } from "../../Components/Constants/companyLogos";
 
 function LogosSection() {
     return (

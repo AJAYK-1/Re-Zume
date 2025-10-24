@@ -2,7 +2,6 @@ import React from 'react'
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import heroAnimation from '../../assets/Animations/hero.lottie'
 import { BsCheck2Circle } from 'react-icons/bs';
-import { SiReaddotcv } from 'react-icons/si';
 import { FaFileLines } from 'react-icons/fa6';
 
 function HeroSection() {

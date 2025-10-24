@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
-import Navbar from './Navbar'
-import Footer from './Footer'
+import Navbar from '../Components/Layouts/Navbar'
+import Footer from '../Components/Layouts/Footer'
 import { toast } from 'react-toastify'
 import { gql } from '@apollo/client'
 import { useState } from 'react'
@@ -8,7 +8,7 @@ import { useMutation } from '@apollo/client/react'
 import { useNavigate } from 'react-router-dom'
 import { FaLock, FaRegEnvelope, FaRegUser } from 'react-icons/fa'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
-import signupanimation from "../../assets/Animations/signup.lottie";
+import signupanimation from "../assets/Animations/signup.lottie";
 
 const USER_SIGNUP = gql`
 mutation CreateUser($name: String!, $email: String!, $password: String!) {

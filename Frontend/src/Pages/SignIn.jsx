@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
-import Navbar from './Navbar'
-import Footer from './Footer'
+import Navbar from '../Components/Layouts/Navbar'
+import Footer from '../Components/Layouts/Footer'
 import { jwtDecode } from "jwt-decode";
 import { gql } from '@apollo/client'
 import { useMutation } from '@apollo/client/react'
 import { FaEnvelope, FaLock } from 'react-icons/fa';
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-import signinAnimation from "../../assets/Animations/Login.lottie";
+import signinAnimation from "../assets/Animations/Login.lottie";
 import { toast } from 'react-toastify'
 import { useNavigate } from "react-router-dom";
 

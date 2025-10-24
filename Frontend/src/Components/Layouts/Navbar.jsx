@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { ThemeContext } from '../Utilities/themeContext';
+import { ThemeContext } from '../../Context/themeContext';
 import { FaBars, FaMoon, FaSun, FaTimes } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom'
 

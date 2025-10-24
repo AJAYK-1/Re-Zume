@@ -1,5 +1,5 @@
 import React from 'react'
-import CouterUp from '../Utilities/CouterUp'
+import CouterUp from '../../Components/Utilities/CouterUp'
 
 function InfoSection() {
   return (

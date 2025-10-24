@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import Navbar from '../Common/Navbar'
+import Navbar from '../Layouts/Navbar'
 import UserFooter from './UserFooter'
 import { gql } from '@apollo/client'
 import { useQuery } from '@apollo/client/react'
