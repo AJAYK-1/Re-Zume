@@ -1,14 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react'
-import Navbar from '../Components/Layouts/Navbar'
-import Footer from '../Components/Layouts/Footer'
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import Navbar from '../../Components/Layouts/Navbar'
+import Footer from '../../Components/Layouts/Footer'
 import { jwtDecode } from "jwt-decode";
 import { gql } from '@apollo/client'
 import { useMutation } from '@apollo/client/react'
 import { FaEnvelope, FaLock } from 'react-icons/fa';
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-import signinAnimation from "../assets/Animations/Login.lottie";
+import signinAnimation from "../../assets/Animations/Login.lottie";
 import { toast } from 'react-toastify'
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from '../../Context/authContext';
 
 const USER_SIGNIN = gql`
 mutation UsersSignIn($email: String!, $password: String!) {
@@ -23,6 +24,7 @@ mutation UsersSignIn($email: String!, $password: String!) {
 function SignIn() {
     const [SignIn, { loading, error }] = useMutation(USER_SIGNIN)
     const [formData, setFormData] = useState({})
+    const { setRole } = useContext(AuthContext)
 
     const inputRef = useRef(0)
     useEffect(() => {
@@ -41,6 +43,7 @@ function SignIn() {
                 localStorage.setItem('token', response.token)
                 const decodedToken = jwtDecode(response.token)
                 localStorage.setItem('role', decodedToken.role)
+                setRole(decodedToken.role)
                 toast.success(response.message)
                 setTimeout(() => {
                     navigate('/user-home')

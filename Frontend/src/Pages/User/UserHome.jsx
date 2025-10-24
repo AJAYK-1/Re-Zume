@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react'
-import Navbar from '../Layouts/Navbar'
+import Navbar from '../../Components/Layouts/Navbar'
 import UserFooter from './UserFooter'
 import { gql } from '@apollo/client'
 import { useQuery } from '@apollo/client/react'
 import { jwtDecode } from 'jwt-decode'
-import ResumeGeneratorClassic from '../Utilities/ResumeGenerator_Classic'
+import ResumeGeneratorClassic from '../../Components/Utilities/ResumeGenerator_Classic'
 import { useNavigate } from 'react-router-dom'
 
 const MyResumes = gql`

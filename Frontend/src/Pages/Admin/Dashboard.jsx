@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../Layouts/Navbar'
+import Navbar from '../../Components/Layouts/Navbar'
 
 function Dashboard() {
   return (

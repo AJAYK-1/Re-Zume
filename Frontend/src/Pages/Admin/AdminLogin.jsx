@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { gql } from '@apollo/client'
 import { useMutation } from '@apollo/client/react'
 import { jwtDecode } from 'jwt-decode'
 import { FaEnvelope, FaLock } from 'react-icons/fa'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../Context/authContext'
 
 const ADMIN_LOGIN = gql`
   mutation AdminLogin ($name: String!, $password: String!) {
@@ -17,6 +18,8 @@ const ADMIN_LOGIN = gql`
 `
 
 function AdminLogin() {
+  const { setRole } = useContext(AuthContext)
+
   const [inputData, setInputData] = useState({
     name: '', password: ''
   })
@@ -25,7 +28,6 @@ function AdminLogin() {
   useEffect(() => {
     inputRef.current.focus()
   }, [])
-
   const [adminLogin, { error, loading }] = useMutation(ADMIN_LOGIN)
 
   const handleChange = (e) => setInputData({ ...inputData, [e.target.name]: e.target.value })
@@ -40,6 +42,7 @@ function AdminLogin() {
         localStorage.setItem('token', response.token)
         const decodedToken = jwtDecode(response.token)
         localStorage.setItem('role', decodedToken.role)
+        setRole(decodedToken.role)
         toast.success(response.message)
         setTimeout(() => navigate('/dashboard'), 2000);
       } else {

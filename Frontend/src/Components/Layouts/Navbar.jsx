@@ -2,18 +2,20 @@ import React, { useContext, useState } from 'react'
 import { ThemeContext } from '../../Context/themeContext';
 import { FaBars, FaMoon, FaSun, FaTimes } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../Context/authContext';
 
 function Navbar() {
     const [sideBar, setSideBar] = useState(false)
     const { theme, toggleTheme } = useContext(ThemeContext)
-    const role = localStorage.getItem('role')
+    const { role, setRole } = useContext(AuthContext)
 
     const navigate = useNavigate()
     const handleLogout = (e) => {
         e.preventDefault()
         localStorage.removeItem('role')
         localStorage.removeItem('token')
-        setTimeout(() => navigate('/'), 1000);
+        setRole(null)
+        setTimeout(() => navigate('/signIn'), 1000);
     }
 
     return (
