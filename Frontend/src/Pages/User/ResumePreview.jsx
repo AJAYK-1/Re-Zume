@@ -1,11 +1,10 @@
 import React from 'react'
-import ResumeGeneratorClassic from '../Utilities/ResumeGenerator_Classic'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { RiArrowGoBackFill, RiDeleteBin2Line } from 'react-icons/ri';
 import { FaRegEdit } from 'react-icons/fa';
 import { FiDownload } from 'react-icons/fi';
-import ResumePDF from '../Utilities/ResumePDF';
 import { PDFViewer } from '@react-pdf/renderer';
+import ResumePDF from '../../Components/Utilities/ResumePDF';
 
 function ResumePreview() {
     const location = useLocation()

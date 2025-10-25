@@ -1,5 +1,5 @@
 import React from 'react'
-import { Page, Text, View, Document, StyleSheet, Font, Link } from "@react-pdf/renderer";
+import { Page, Text, View, Document, StyleSheet, Link } from "@react-pdf/renderer";
 
 const styles = StyleSheet.create({
     page: {
@@ -155,4 +155,4 @@ function ResumePDF({ resumeData }) {
     )
 }
 
-export default ResumePDF
+export default React.memo(ResumePDF)
