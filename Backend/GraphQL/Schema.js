@@ -64,7 +64,6 @@ export const typeDefinitions = `#graphql
         skills: Skills!
         projects: [Projects!]!
         certifications: [Certifications!]!
-        resumefile: String
     }
     type Response {
         success: Boolean!
@@ -79,6 +78,7 @@ export const typeDefinitions = `#graphql
         adminLogin(name: String!, password: String!): Response
         userSignIn(email: String!, password: String!): Response
         createResume(resume: ResumeInput!): Response
+        deleteResume(id: ID!): Response
     }
 
     input AddressInput {
@@ -134,6 +134,5 @@ export const typeDefinitions = `#graphql
         skills: SkillsInput!
         projects: [ProjectsInput!]!
         certifications: [CertificationsInput!]!
-        resumefile: String
     }
 `

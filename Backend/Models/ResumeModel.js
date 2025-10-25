@@ -55,7 +55,6 @@ const ResumeSchema = new mongoose.Schema({
         certificateName: { type: String, required: true },
         provider: { type: String, required: true }
     }],
-    resumefile: { type: String, default: null },
 }, { timestamps: true })
 
 const ResumeDB = mongoose.model('Resume_Collection', ResumeSchema)

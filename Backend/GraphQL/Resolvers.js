@@ -93,7 +93,7 @@ const resolvers = {
                 experience.map((exp) => {
                     exp.from = new Date(exp.from).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
                     exp.to = new Date(exp.to).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
-                    exp.description = exp.description.split('. ').map((desc) => 
+                    exp.description = exp.description.split('. ').map((desc) =>
                         desc.endsWith('.') ? desc : desc += '.'
                     )
                 })
@@ -101,11 +101,10 @@ const resolvers = {
                 education.start = new Date(education.start).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
                 education.end = new Date(education.end).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
 
-                const fileName = await ResumeGenerator(args.resume)
                 const newResume = await ResumeDB.create({
                     userId, name, summary, email, phone, gender,
                     address, linkedIn, gitHub, portfolio, education,
-                    experience, skills, projects, certifications, resumefile: fileName
+                    experience, skills, projects, certifications
                 })
 
                 if (newResume)
@@ -116,6 +115,20 @@ const resolvers = {
                 return { success: false, message: "Server Error" }
             }
         },
+        deleteResume: async (_, args, context) => {
+            try {
+                if (!context.isAuthenticated) return { success: false, message: 'Unauthorised User...' }
+
+                const { id } = args
+                console.log(id);
+                
+                await ResumeDB.deleteOne({ _id: id })
+                return { success: true, message: 'Resume deleted' }
+            } catch (error) {
+                console.log(error.message);
+                return { success: false, message: "Server Error" }
+            }
+        }
     }
 }
 
