@@ -1,7 +1,6 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import Navbar from '../../Components/Layouts/Navbar'
 import Footer from '../../Components/Layouts/Footer'
-import { gql } from '@apollo/client'
 import { useMutation, useQuery } from '@apollo/client/react'
 import { jwtDecode } from 'jwt-decode'
 import { PDFViewer } from '@react-pdf/renderer'
@@ -14,69 +13,8 @@ import BlobResume from '../../Components/Utilities/BlobResume'
 import itemLoading from '../../assets/Animations/itemLoading.lottie'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import { toast } from 'react-toastify'
-
-const MyResumes = gql`
-  query myResumes( $userId: ID!) {
-    myResumes( userId: $userId) {
-    id
-    userId
-    resumeType
-    name
-    summary
-    phone
-    email
-    gender
-    address {
-      country
-      state
-      district
-      city
-      pincode
-    }
-    linkedIn
-    gitHub
-    portfolio
-    education {
-      course
-      university
-      institution
-      start
-      end
-      place
-    }
-    experience {
-      company
-      position
-      place
-      from
-      to
-      description
-    }
-    skills {
-      professional
-      soft
-    }
-    projects {
-      title
-      details
-      link
-    }
-    certifications {
-      certificateName
-      provider
-    }
-    }
-  }
-`
-
-const DELETE_RESUME = gql`
-  mutation DeleteResume( $id:ID!) {
-    deleteResume( id: $id ) {
-      message
-      success
-    }
-  }
-`
+import { MY_RESUMES, DELETE_RESUME } from '../../Components/Constants/Queries'
+import { EntityStore } from '@apollo/client/cache'
 
 function UserHome() {
   const [selectedResume, setSelectedResume] = useState(null)
@@ -86,14 +24,34 @@ function UserHome() {
     return jwtDecode(token)
   }, [])
 
-  const { data, loading, error } = useQuery(MyResumes,
-    { variables: { userId: decodedtoken.id } })
+  const { data, loading, error, fetchMore } = useQuery(MY_RESUMES, {
+    variables: { userId: decodedtoken.id, first: 6, after: null },
+    notifyOnNetworkStatusChange: true
+  })
 
-  const resumes = useMemo(() => data?.myResumes || [], [data])
-  if (error) console.log(error.message);
+  const resumes = useMemo(() => data?.myResumes?.edges || [], [data])
+  const { hasNextPage, endCursor } = data?.myResumes?.pageInfo || {}
 
-  const [DeleteResume, { loading: delLoad }] = useMutation(DELETE_RESUME)
+  const loaderRef = useRef(null)
+  const [isFetching, setIsFetching] = useState(false)
+  useEffect(() => {
+    if (!loaderRef.current || !hasNextPage) return;
 
+    const observer = new IntersectionObserver(
+      async (entries) => {
+        if (entries[0].isIntersecting && !isFetching) {
+          setIsFetching(true)
+          await fetchMore({ variables: { userId: decodedtoken.id, first: 6, after: endCursor } })
+          setIsFetching(false)
+        }
+      }, { threshold: 0.5 }
+    )
+    observer.observe(loaderRef.current)
+
+    return () => observer.disconnect()
+  }, [hasNextPage, data])
+
+  const [DeleteResume, { }] = useMutation(DELETE_RESUME)
   const handleDeletion = async (e, id) => {
     try {
       e.preventDefault()
@@ -108,6 +66,7 @@ function UserHome() {
       console.log(error.message);
     }
   }
+
   if (!selectedResume)
     return (
       <>
@@ -126,26 +85,31 @@ function UserHome() {
                 </div>
               </div> :
               <div className=' grid grid-cols-1 place-self-center gap-10 md:grid-cols-2 md:gap-13 lg:grid-cols-3 xl:gap-20'>
-                {resumes?.map((resume, index) =>
+                {resumes?.map(({ node }, index) =>
                   <div key={index}
                     className='h-80 w-70 bg-white shadow-xl dark:bg-[#2a0248] rounded-2xl pb-10'>
-                    <section key={resume?.id}
-                      onClick={() => setSelectedResume(resume)}
+                    <section key={node?.id}
+                      onClick={() => setSelectedResume(node)}
                       className='relative overflow-hidden hover:cursor-pointer '>
-                      <BlobResume resume={resume} />
-                      <h1 className='text-lg font-poppins font-semibold ml-3 dark:text-white'>{resume.name}</h1>
-                      <h2 className='font-poppins font-semibold ml-3 dark:text-white'>{resume.resumeType} Resume </h2>
+                      <BlobResume resume={node} />
+                      <h1 className='text-lg font-poppins font-semibold ml-3 dark:text-white'>{node.name}</h1>
+                      <h2 className='font-poppins font-semibold ml-3 dark:text-white'>{node.resumeType} Resume </h2>
                     </section>
                     <div className='flex justify-evenly items-center p-5'>
-                      <button className='button-2-mini' onClick={() => setSelectedResume(resume)}><BsArrowsFullscreen /> </button>
-                      <button className='button-2-mini' onClick={(e) => handleDeletion(e, resume.id)}><RiDeleteBin2Line /> </button>
+                      <button className='button-2-mini' onClick={() => setSelectedResume(node)}><BsArrowsFullscreen /> </button>
+                      <button className='button-2-mini' onClick={(e) => handleDeletion(e, node.id)}><RiDeleteBin2Line /> </button>
                       <button className='button-2-mini'><FaRegEdit /> </button>
-                      <PDFDownloadButton resume={resume} />
+                      <PDFDownloadButton resume={node} />
                     </div>
                   </div>
                 )}
               </div>
           }
+          <div ref={loaderRef} >
+            {hasNextPage && <p className='flex justify-center items-center tag-line'>
+              Loading more Resumes...
+            </p>}
+          </div>
         </main>
 
         <Footer />

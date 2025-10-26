@@ -16,7 +16,7 @@ function BlobResume({ resume }) {
                         alt='Resume preview'
                         className="w-full h-[200px] overflow-hidden border-none rounded-t-2xl hover:cursor-pointer" />
                 ) : (
-                    <div className='text-center'> Preview not available </div>
+                    <div className='w-full h-[200px] dark:text-white flex justify-center items-center'> Preview not available </div>
                 )}
         </BlobProvider>
     )

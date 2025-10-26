@@ -14,7 +14,25 @@ const authorizationLink = new SetContextLink(async (request, { headers }) => {
 
 const client = new ApolloClient({
     link: authorizationLink.concat(link),
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+        typePolicies: {
+            Query: {
+                fields: {
+                    myResumes: {
+                        keyArgs: ['userId'],
+                        merge(existing = {}, incoming) {
+                            if (!existing.edges) return incoming
+
+                            return {
+                                ...incoming,
+                                edges: [...existing.edges, ...incoming.edges]
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }),
 })
 
 export default client

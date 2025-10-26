@@ -20,10 +20,26 @@ const resolvers = {
             try {
                 if (!context.isAuthenticated) return { success: false, message: 'Unauthorised user...' }
 
-                const userId = args.userId
-                const fetchedResumes = await ResumeDB.find({ userId })
+                const { userId, first = 6, after } = args
+                const query = { userId }
 
-                return fetchedResumes
+                if (after) query._id = { $gt: after }
+
+                const fetchedResumes = await ResumeDB.find(query).sort({ _id: 1 }).limit(first + 1)
+
+                const hasNextPage = fetchedResumes.length > first
+                const edges = fetchedResumes.slice(0, first).map((resume) => ({
+                    cursor: resume._id,
+                    node: resume
+                }))
+
+                return {
+                    edges,
+                    pageInfo: {
+                        endCursor: edges.length > 0 ? edges[edges.length - 1].cursor : null,
+                        hasNextPage
+                    }
+                }
             } catch (error) {
                 console.log(error.message);
                 return { success: false, message: "Server Error" }
@@ -121,7 +137,7 @@ const resolvers = {
 
                 const { id } = args
                 console.log(id);
-                
+
                 await ResumeDB.deleteOne({ _id: id })
                 return { success: true, message: 'Resume deleted' }
             } catch (error) {

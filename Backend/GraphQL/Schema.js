@@ -2,14 +2,28 @@ export const typeDefinitions = `#graphql
     type Query {
         users: [User]
         resumes: [Resume]
-        myResumes(userId: ID!): [Resume]
+        myResumes(userId: ID!, first: Int, after: ID): ResumeConnection!
     }
+    type ResumeConnection {
+        edges: [ResumeEdge!]!
+        pageInfo: PageInfo!
+    }
+    type ResumeEdge {
+        node: Resume!
+        cursor: ID!
+    }
+    type PageInfo {
+        endCursor: ID!
+        hasNextPage: Boolean!
+    }
+
     type User {
         id: ID!
         name: String!
         email: String!
         password: String!
     }
+    
     type Address {
         country: String!
         state: String!
