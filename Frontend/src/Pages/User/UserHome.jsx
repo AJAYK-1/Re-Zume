@@ -85,7 +85,7 @@ function UserHome() {
                 </div>
               </div> :
               <div className=' grid grid-cols-1 place-self-center gap-10 md:grid-cols-2 md:gap-13 lg:grid-cols-3 xl:gap-20'>
-                {resumes?.map(({ node }, index) =>
+                {[...resumes]?.map(({ node }, index) =>
                   <div key={index}
                     className='h-80 w-70 bg-white shadow-xl dark:bg-[#2a0248] rounded-2xl pb-10'>
                     <section key={node?.id}

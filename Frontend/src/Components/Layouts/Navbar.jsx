@@ -41,19 +41,19 @@ function Navbar() {
                     <section className='flex flex-col mt-8 ml-6 space-y-5'>
                         {role === 'User' ? <>
                             <a href="/user-home" className='nav-links text-lg'> Home </a>
-                            <a href="#" className='nav-links text-lg'> Resume Builder </a>
-                            <a href="#" className='nav-links text-lg'> ATS Checker </a>
-                            <a href="#" className='nav-links text-lg'> Resume Modifier </a>
+                            <a href="/build-resume" className='nav-links text-lg'> Resume Builder </a>
+                            <a href="/ats-checker" className='nav-links text-lg'> ATS Checker </a>
+                            <a href="/resume-modifier" className='nav-links text-lg'> Resume Modifier </a>
                             <button onClick={handleLogout} className='w-30 bg-red-500 rounded-xl p-1 font-poppins font-bold text-white'> Logout </button>
                         </> : role === 'Admin' ? <>
-                            <a href="#" className='nav-links text-lg'> Dashboard </a>
-                            <a href="#" className='nav-links text-lg'> Users </a>
-                            <a href="#" className='nav-links text-lg'> Feedbacks </a>
+                            <a href="/dashboard" className='nav-links text-lg'> Dashboard </a>
+                            <a href="/user-management" className='nav-links text-lg'> Users </a>
+                            <a href="/feedback-management" className='nav-links text-lg'> Feedbacks </a>
                             <button onClick={handleLogout} className='w-30 bg-red-500 rounded-xl p-1 font-poppins font-bold text-white'> Logout </button>
                         </> : <>
-                            <a href="#" className='nav-links text-lg'> Resume Builder </a>
-                            <a href="#" className='nav-links text-lg'> ATS Checker </a>
-                            <a href="#" className='nav-links text-lg'> Resume Modifier </a>
+                            <a href="/build-resume" className='nav-links text-lg'> Resume Builder </a>
+                            <a href="#" className='nav-links text-lg'> About </a>
+                            <a href="#" className='nav-links text-lg'> Contact </a>
                             <a href="/signIn" className='nav-links text-lg'> SignIn </a>
                         </>}
                     </section>
@@ -62,17 +62,17 @@ function Navbar() {
             <section className='hidden md:flex space-x-5 items-center'>
                 {role === 'User' ? <>
                     <a href="/user-home" className='nav-links'> Home </a>
-                    <a href="#" className='nav-links'> Resume Builder </a>
-                    <a href="#" className='nav-links'> ATS Checker </a>
-                    <a href="#" className='nav-links'> Resume Modifier </a>
+                    <a href="/build-resume" className='nav-links'> Resume Builder </a>
+                    <a href="/ats-checker" className='nav-links'> ATS Checker </a>
+                    <a href="/resume-modifier" className='nav-links'> Resume Modifier </a>
                     <button onClick={handleLogout} className='logout'> Logout </button>
                 </> : role === 'Admin' ? <>
-                    <a href="#" className='nav-links'> Dashboard </a>
-                    <a href="#" className='nav-links'> Users </a>
-                    <a href="#" className='nav-links'> Feedbacks </a>
+                    <a href="/dashboard" className='nav-links'> Dashboard </a>
+                    <a href="/user-management" className='nav-links'> Users </a>
+                    <a href="/feedback-management" className='nav-links'> Feedbacks </a>
                     <button onClick={handleLogout} className='logout'> Logout </button>
                 </> : <>
-                    <a href="#" className='nav-links'> Resume Builder </a>
+                    <a href="/build-resume" className='nav-links'> Resume Builder </a>
                     <a href="#" className='nav-links'> About </a>
                     <a href="#" className='nav-links'> Contact </a>
                     <a href="/signIn" className='nav-links'> SignIn </a>
