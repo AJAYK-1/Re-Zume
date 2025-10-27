@@ -18,7 +18,8 @@ function BuildResume() {
     phone: '',
     address: {
       country: '', state: '', district: '', city: '', pincode: ''
-    }
+    },
+    summary: '',
   })
 
   console.log(resumeData);
@@ -50,8 +51,8 @@ function BuildResume() {
         <h1 className='main-heading text-center mb-5'> Build your Resume </h1>
 
         <section className='big-box relative mx-auto'>
-          <button className='button-3 absolute left-3' onClick={leftButton}> <FaChevronLeft /> </button>
-          <button className='button-3 absolute right-3' onClick={rightButton}> <FaChevronRight /> </button>
+          <button className='button-3 absolute left-2' onClick={leftButton}> <FaChevronLeft /> </button>
+          <button className='button-3 absolute right-2' onClick={rightButton}> <FaChevronRight /> </button>
           {step === 1 && <PersonalDetails resumeData={resumeData} setResumeData={setResumeData} />}
           {step === 2 && <Summary />}
           {step === 3 && <Experience />}
