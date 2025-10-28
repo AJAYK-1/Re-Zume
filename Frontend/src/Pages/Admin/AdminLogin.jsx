@@ -6,16 +6,7 @@ import { FaEnvelope, FaLock } from 'react-icons/fa'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../Context/authContext'
-
-const ADMIN_LOGIN = gql`
-  mutation AdminLogin ($name: String!, $password: String!) {
-    adminLogin (name: $name, password: $password) {
-      success
-      token
-      message
-    }
-  }
-`
+import { ADMIN_LOGIN } from "../../Components/Constants/Queries";
 
 function AdminLogin() {
   const { setRole } = useContext(AuthContext)

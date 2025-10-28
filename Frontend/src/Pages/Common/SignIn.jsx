@@ -10,19 +10,10 @@ import signinAnimation from "../../assets/Animations/Login.lottie";
 import { toast } from 'react-toastify'
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from '../../Context/authContext';
-
-const USER_SIGNIN = gql`
-mutation UsersSignIn($email: String!, $password: String!) {
-    userSignIn(email: $email, password: $password) {
-        success
-        message
-        token
-    }
-}
-`
+import { USER_SIGNIN } from '../../Components/Constants/Queries';
 
 function SignIn() {
-    const [SignIn, { loading, error }] = useMutation(USER_SIGNIN)
+    const [SignIn, { loading }] = useMutation(USER_SIGNIN)
     const [formData, setFormData] = useState({})
     const { setRole } = useContext(AuthContext)
 

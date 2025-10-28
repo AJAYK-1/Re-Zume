@@ -9,19 +9,11 @@ import { useNavigate } from 'react-router-dom'
 import { FaLock, FaRegEnvelope, FaRegUser } from 'react-icons/fa'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import signupanimation from "../../assets/Animations/signup.lottie";
-
-const USER_SIGNUP = gql`
-mutation CreateUser($name: String!, $email: String!, $password: String!) {
-      userSignUp(name: $name, email: $email, password: $password) {
-        success
-        message
-      }
-}
-`
+import { USER_SIGNUP } from '../../Components/Constants/Queries'
 
 function SignUp() {
   const [formData, setFormData] = useState({})
-  const [createUser, { loading, error }] = useMutation(USER_SIGNUP)
+  const [createUser, { loading }] = useMutation(USER_SIGNUP)
 
   const inputRef = useRef(0)
   useEffect(() => {

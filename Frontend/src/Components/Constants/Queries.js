@@ -1,5 +1,34 @@
 import { gql } from "@apollo/client";
 
+export const ADMIN_LOGIN = gql`
+  mutation AdminLogin ($name: String!, $password: String!) {
+    adminLogin (name: $name, password: $password) {
+      success
+      token
+      message
+    }
+  }
+`
+
+export const USER_SIGNUP = gql`
+mutation CreateUser($name: String!, $email: String!, $password: String!) {
+      userSignUp(name: $name, email: $email, password: $password) {
+        success
+        message
+      }
+}
+`
+
+export const USER_SIGNIN = gql`
+mutation UsersSignIn($email: String!, $password: String!) {
+    userSignIn(email: $email, password: $password) {
+        success
+        message
+        token
+    }
+}
+`
+
 export const MY_RESUMES = gql`
   query MyResumes($userId: ID!, $first: Int, $after: ID) {
   myResumes(userId: $userId, first: $first, after: $after) {
