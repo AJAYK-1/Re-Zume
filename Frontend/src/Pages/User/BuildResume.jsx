@@ -7,6 +7,7 @@ import Education from "./components/Education";
 import Skills from "./components/Skills";
 import Experience from "./components/Experience";
 import Certification from "./components/Certification";
+import { ResumeContext } from "../../Context/resumeContext";
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 function BuildResume() {
@@ -27,7 +28,6 @@ function BuildResume() {
   const leftButton = (e) => {
     try {
       e.preventDefault()
-      if (step === 1) return;
       setStep(step - 1)
     } catch (error) {
       console.log(error.message);
@@ -37,7 +37,6 @@ function BuildResume() {
   const rightButton = (e) => {
     try {
       e.preventDefault()
-      if (step === 6) return;
       setStep(step + 1)
     } catch (error) {
       console.log(error.message);
@@ -45,15 +44,14 @@ function BuildResume() {
   }
 
   return (
-    <>
+    <ResumeContext.Provider value={{ resumeData, setResumeData }} >
       <Navbar />
-      <main className='background-1 h-full p-5'>
+      <main className='background-1 h-full lg:h-[120%] xl:h-full p-5'>
         <h1 className='main-heading text-center mb-5'> Build your Resume </h1>
 
         <section className='big-box relative mx-auto'>
-          <button className='button-3 absolute left-2' onClick={leftButton}> <FaChevronLeft /> </button>
-          <button className='button-3 absolute right-2' onClick={rightButton}> <FaChevronRight /> </button>
-          {step === 1 && <PersonalDetails resumeData={resumeData} setResumeData={setResumeData} />}
+          <button className='button-3 absolute left-2 top-10' onClick={leftButton} disabled={step === 1}> <FaChevronLeft /> </button>
+          {step === 1 && <PersonalDetails />}
           {step === 2 && <Summary />}
           {step === 3 && <Experience />}
           {step === 4 && <Skills />}
@@ -63,7 +61,7 @@ function BuildResume() {
 
       </main>
       <Footer />
-    </>
+    </ResumeContext.Provider>
   )
 }
 
