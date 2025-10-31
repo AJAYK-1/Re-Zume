@@ -21,6 +21,7 @@ function BuildResume() {
       country: '', state: '', district: '', city: '', pincode: ''
     },
     summary: '',
+    experience: [{ company: '', position: '', place: '', from: '', to: '', description: '' }]
   })
 
   console.log(resumeData);
@@ -34,17 +35,8 @@ function BuildResume() {
     }
   }
 
-  const rightButton = (e) => {
-    try {
-      e.preventDefault()
-      setStep(step + 1)
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
-
   return (
-    <ResumeContext.Provider value={{ resumeData, setResumeData }} >
+    <ResumeContext.Provider value={{ resumeData, setResumeData, step, setStep }} >
       <Navbar />
       <main className='background-1 h-full lg:h-[120%] xl:h-full p-5'>
         <h1 className='main-heading text-center mb-5'> Build your Resume </h1>

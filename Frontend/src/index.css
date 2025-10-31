@@ -105,6 +105,10 @@ body,
     .resume-input {
         @apply outline-0 bg-violet-200 rounded-4xl font-poppins font-bold text-slate-900 p-1.5 pl-5;
     }
+
+    .resume-textarea {
+        @apply outline-0 bg-violet-200 rounded-lg font-poppins font-bold text-slate-900 p-2 pl-3 w-[100%] h-50;
+    }
 }
 
 @keyframes marquee{

@@ -1,17 +1,42 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { FaChevronRight } from 'react-icons/fa'
+import { useResumeData } from '../../../Context/resumeContext'
 
 function Summary() {
+  const { resumeData, setResumeData, step, setStep } = useResumeData()
+  const [personalData, setPersonalData] = useState(resumeData)
+
+  useEffect(() => {
+    setPersonalData(resumeData)
+  }, [resumeData])
+
+  const handleChange = (e) => setPersonalData({ ...personalData, [e.target.name]: e.target.value })
+
+  const submitPersonalData = async (e) => {
+    try {
+      e.preventDefault()
+      setResumeData(personalData)
+      setStep(step + 1)
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
   return (
     <div className='py-3 mx-3'>
       <h2 className='sub-heading'> Summary </h2>
-      <p className='mt-5 text-justify tag-line'> Write something about yourself or few keywords for the AI to prepare a perfect summary that suites you. </p>
+      <form onSubmit={submitPersonalData} className='mt-7 space-y-5'>
+        <p className=' text-justify text-slate-600 dark:text-slate-300 font-poppins font-'> Write something about yourself or few keywords for the AI to prepare a perfect summary that suites you. </p>
 
-      <textarea
-        name="summary" id="summary"
-        className='relative-input'
-        placeholder='Write something about yourself...' />
+        <textarea
+          value={personalData.summary}
+          onChange={handleChange}
+          name="summary" id="summary"
+          className='resume-textarea'
+          placeholder='Eg:- Full stack developer skilled in writing clean code and specializing in MERN stack. ' required />
 
-      <p>Eg:- Full stack developer skilled in writing clean code and specializing in MERN stack. </p>
+        <button type='submit' className='button-3 absolute right-2 top-10' > <FaChevronRight /> </button>
+      </form>
     </div>
   )
 }

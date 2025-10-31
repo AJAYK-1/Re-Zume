@@ -4,7 +4,7 @@ import PhoneInput from "react-phone-input-2";
 import { useResumeData } from '../../../Context/resumeContext';
 
 function PersonalDetails() {
-    const { resumeData, setResumeData } = useResumeData()
+    const { resumeData, setResumeData, step, setStep } = useResumeData()
     const [personalData, setPersonalData] = useState(resumeData)
 
     useEffect(() => {
@@ -20,6 +20,7 @@ function PersonalDetails() {
         try {
             e.preventDefault()
             setResumeData(personalData)
+            setStep(step + 1)
         } catch (error) {
             console.log(error.message);
         }
