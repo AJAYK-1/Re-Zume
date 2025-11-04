@@ -1,22 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { FaChevronRight } from 'react-icons/fa'
 import { useResumeData } from '../../../Context/resumeContext'
 
 function Experience() {
   const { resumeData, setResumeData, step, setStep } = useResumeData()
-  // const [expRow, setExpRow] = useState(resumeData)
   const [expRow, setExpRow] = useState(resumeData.experience)
-
-  // useEffect(() => {
-  //   setPersonalData(resumeData)
-  // }, [resumeData])
 
   const handleChange = (e, index) => {
     const { name, value } = e.target
     const newData = [...expRow]
-    newData[index] = { ...expRow, [name]: value }
+    newData[index][name] = value
     setExpRow(newData)
   }
+  console.log(expRow);
 
   const AddNewRow = () => setExpRow([...expRow, { company: '', position: '', place: '', from: '', to: '', description: '' }])
 
@@ -36,8 +32,8 @@ function Experience() {
 
       <form onSubmit={submitPersonalData} className='pt-15 grid grid-cols-1'>
         {expRow.map((exp, index) =>
-          <div key={index} className='p-3 space-y-2 shadow-xl rounded-2xl m-2'>
-            <h1> EXPERIENCE #{index + 1}</h1>
+          <div key={index} className='p-3 space-y-3 shadow-xl rounded-2xl m-2'>
+            <h1 className='tag-line'> EXPERIENCE #{index + 1}</h1>
             <input type="text" name='company'
               value={exp.company}
               onChange={(e) => handleChange(e, index)}
@@ -79,7 +75,9 @@ function Experience() {
         )}
         <button type='submit' className='button-3 absolute right-2 top-10' > <FaChevronRight /> </button>
       </form>
-      <button onClick={AddNewRow} className='button-1'> + Add Experience </button>
+      <div className='flex justify-center items-center mt-5'>
+        <button onClick={AddNewRow} className='button-1 max-w-50'> + Add Experience </button>
+      </div>
 
     </div>
   )

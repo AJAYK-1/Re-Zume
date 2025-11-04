@@ -14,7 +14,6 @@ function PersonalDetails() {
     const handleChange = (e) => setPersonalData({ ...personalData, [e.target.name]: e.target.value })
     const handleAddressChange = (e) =>
         setPersonalData({ ...personalData, address: { ...personalData.address, [e.target.name]: e.target.value } })
-    console.log(personalData);
 
     const submitPersonalData = async (e) => {
         try {

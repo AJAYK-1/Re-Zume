@@ -38,7 +38,7 @@ function BuildResume() {
   return (
     <ResumeContext.Provider value={{ resumeData, setResumeData, step, setStep }} >
       <Navbar />
-      <main className='background-1 h-full lg:h-[120%] xl:h-full p-5'>
+      <main className='background-1 min-h-full lg:min-h-[120%] xl:min-h-full p-5'>
         <h1 className='main-heading text-center mb-5'> Build your Resume </h1>
 
         <section className='big-box relative mx-auto'>
