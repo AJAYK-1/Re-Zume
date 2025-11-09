@@ -17,6 +17,15 @@ const educationSchema = new mongoose.Schema({
     place: { type: String, required: true }
 })
 
+const technicalSkillsSchema = new mongoose.Schema({
+    frontend: { type: [String], required: true },
+    backend: { type: [String], required: true },
+    languages: { type: [String], required: true },
+    databases: { type: [String], required: true },
+    toolsAndDevOps: { type: [String], required: true },
+    others: { type: [String], required: true },
+})
+
 const experienceSchema = new mongoose.Schema({
     company: { type: String, required: true },
     position: { type: String, required: true },
@@ -47,7 +56,7 @@ const ResumeSchema = new mongoose.Schema({
     education: { type: educationSchema, required: true },
     experience: { type: [experienceSchema], default: [] },
     skills: {
-        professional: { type: [String], required: true },
+        technical: { type: [technicalSkillsSchema], required: true },
         soft: { type: [String], required: true },
     },
     projects: { type: [projectsSchema], default: [] },

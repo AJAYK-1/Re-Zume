@@ -26,7 +26,7 @@ function Summary() {
     <div className='py-3 mx-3'>
       <h2 className='sub-heading'> Summary </h2>
       <form onSubmit={submitPersonalData} className='mt-7 space-y-5'>
-        <p className=' text-justify text-slate-600 dark:text-slate-300 font-poppins font-'> Write something about yourself or few keywords for the AI to prepare a perfect summary that suites you. </p>
+        <p className='definition'> Write something about yourself or few keywords for the AI to prepare a perfect summary that suites you. </p>
 
         <textarea
           value={personalData.summary}

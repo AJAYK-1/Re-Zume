@@ -68,7 +68,14 @@ export const MY_RESUMES = gql`
           description
         }
         skills {
-          professional
+          technical {
+            frontend
+            backend
+            languages
+            databases
+            toolsAndDevOps
+            others
+          }
           soft
         }
         projects {

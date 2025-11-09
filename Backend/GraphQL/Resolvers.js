@@ -107,8 +107,8 @@ const resolvers = {
                     experience, skills, projects, certifications } = args.resume
 
                 experience.map((exp) => {
-                    exp.from = new Date(exp.from).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
-                    exp.to = new Date(exp.to).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+                    exp.from = new Date(exp.from).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+                    exp.to = new Date(exp.to).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
                     exp.description = exp.description.split('. ').map((desc) =>
                         desc.endsWith('.') ? desc : desc += '.'
                     )

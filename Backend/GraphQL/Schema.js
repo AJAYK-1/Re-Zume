@@ -52,8 +52,16 @@ export const typeDefinitions = `#graphql
         details: String!
         link: String
     }
+    type TechnicalSkills {
+        frontend: [String!]!
+        backend: [String!]!
+        languages: [String!]!
+        databases: [String!]!
+        toolsAndDevOps: [String!]!
+        others: [String!]!
+    }
     type Skills {
-        professional: [String!]!
+        technical: TechnicalSkills!
         soft: [String!]!
     }
     type Certifications {
@@ -123,8 +131,16 @@ export const typeDefinitions = `#graphql
         details: String!
         link: String
     }
+    input TechnicalInput {
+        frontend: [String!]!
+        backend: [String!]!
+        languages: [String!]!
+        databases: [String!]!
+        toolsAndDevOps: [String!]!
+        others: [String!]!
+    }
     input SkillsInput {
-        professional: [String!]!
+        technical: TechnicalInput!
         soft: [String!]!
     }
     input CertificationsInput {
