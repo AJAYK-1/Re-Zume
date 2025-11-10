@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../../Components/Layouts/Navbar'
 import Footer from '../../Components/Layouts/Footer'
 import PersonalDetails from './components/PersonalDetails'
@@ -11,18 +11,32 @@ import { ResumeContext } from "../../Context/resumeContext";
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 function BuildResume() {
-  const [step, setStep] = useState(1)
-  const [resumeData, setResumeData] = useState({
-    name: '',
-    email: '',
-    gender: '',
-    phone: '',
-    address: {
-      country: '', state: '', district: '', city: '', pincode: ''
-    },
-    summary: '',
-    experience: [{ company: '', position: '', place: '', from: '', to: '', description: '' }]
-  })
+  const [step, setStep] = useState(JSON.parse(sessionStorage.getItem('resumeStep')) || 1)
+  const [resumeData, setResumeData] = useState(
+    JSON.parse(sessionStorage.getItem('resumeData')) || {
+      name: '',
+      email: '',
+      gender: '',
+      phone: '',
+      address: {
+        country: '', state: '', district: '', city: '', pincode: ''
+      },
+      summary: '',
+      experience: [{
+        company: '', position: '', place: '', from: '', to: '', description: ''
+      }],
+      skills: {
+        technical: {
+          frontend: [], backend: [], databases: [], languages: [], toolsandDevOps: [], others: []
+        },
+        soft: []
+      }
+    })
+
+  useEffect(() => {
+    sessionStorage.setItem('resumeData', JSON.stringify(resumeData))
+    sessionStorage.setItem('resumeStep', step)
+  }, [resumeData, step])
 
   console.log(resumeData);
 

@@ -110,7 +110,7 @@ body,
         @apply outline-0 bg-violet-200 rounded-lg font-poppins font-bold text-slate-900 p-2 pl-3 w-[100%] h-50;
     }
 
-    .options-button {
+    .options-span {
         @apply bg-violet-100 rounded-3xl p-2;
     }
 

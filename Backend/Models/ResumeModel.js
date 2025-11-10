@@ -56,7 +56,7 @@ const ResumeSchema = new mongoose.Schema({
     education: { type: educationSchema, required: true },
     experience: { type: [experienceSchema], default: [] },
     skills: {
-        technical: { type: [technicalSkillsSchema], required: true },
+        technical: { type: technicalSkillsSchema, required: true },
         soft: { type: [String], required: true },
     },
     projects: { type: [projectsSchema], default: [] },

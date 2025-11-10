@@ -20,12 +20,12 @@ const client = new ApolloClient({
                 fields: {
                     myResumes: {
                         keyArgs: ['userId'],
-                        merge(existing = {}, incoming) {
+                        merge(existing = { edges: [] }, incoming) {
                             if (!existing.edges) return incoming
 
                             return {
                                 ...incoming,
-                                edges: [...existing.edges, ...incoming.edges]
+                                edges: [...(existing.edges || []), ...(incoming.edges || [])]
                             }
                         }
                     }

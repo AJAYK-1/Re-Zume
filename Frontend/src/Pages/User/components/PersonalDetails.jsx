@@ -7,10 +7,6 @@ function PersonalDetails() {
     const { resumeData, setResumeData, step, setStep } = useResumeData()
     const [personalData, setPersonalData] = useState(resumeData)
 
-    useEffect(() => {
-        setPersonalData(resumeData)
-    }, [resumeData])
-
     const handleChange = (e) => setPersonalData({ ...personalData, [e.target.name]: e.target.value })
     const handleAddressChange = (e) =>
         setPersonalData({ ...personalData, address: { ...personalData.address, [e.target.name]: e.target.value } })

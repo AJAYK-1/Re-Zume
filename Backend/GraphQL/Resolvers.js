@@ -114,8 +114,8 @@ const resolvers = {
                     )
                 })
 
-                education.start = new Date(education.start).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
-                education.end = new Date(education.end).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+                education.start = new Date(education.start).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+                education.end = new Date(education.end).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
 
                 const newResume = await ResumeDB.create({
                     userId, name, summary, email, phone, gender,
