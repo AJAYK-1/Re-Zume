@@ -8,7 +8,8 @@ import Skills from "./components/Skills";
 import Experience from "./components/Experience";
 import Certification from "./components/Certification";
 import { ResumeContext } from "../../Context/resumeContext";
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaChevronLeft } from 'react-icons/fa';
+import Projects from './components/Projects'
 
 function BuildResume() {
   const [step, setStep] = useState(JSON.parse(sessionStorage.getItem('resumeStep')) || 1)
@@ -30,6 +31,15 @@ function BuildResume() {
           frontend: [], backend: [], databases: [], languages: [], toolsandDevOps: [], others: []
         },
         soft: []
+      },
+      education: {
+        course: '', university: '', institution: '', start: '', start: '', end: '', place: ''
+      },
+      projects: [{
+        title: '', details: '', link: ''
+      }],
+      certifications: {
+        certificateName: '', provider: ''
       }
     })
 
@@ -62,7 +72,8 @@ function BuildResume() {
           {step === 3 && <Experience />}
           {step === 4 && <Skills />}
           {step === 5 && <Education />}
-          {step === 6 && <Certification />}
+          {step === 6 && <Projects />}
+          {step === 7 && <Certification />}
         </section>
 
       </main>
