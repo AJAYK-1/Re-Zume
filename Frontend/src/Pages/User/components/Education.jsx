@@ -22,7 +22,7 @@ function Education() {
   }
 
   return (
-    <div className='py-3'>
+    <div className='py-3 mx-3'>
       <h2 className='sub-heading'> Education </h2>
 
       <form onSubmit={submitEducation} className='pt-15 grid grid-cols-1 gap-2 lg:grid-cols-2'>

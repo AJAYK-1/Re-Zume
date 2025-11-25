@@ -38,9 +38,9 @@ function BuildResume() {
       projects: [{
         title: '', details: '', link: ''
       }],
-      certifications: {
+      certifications: [{
         certificateName: '', provider: ''
-      }
+      }]
     })
 
   useEffect(() => {
