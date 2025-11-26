@@ -25,51 +25,53 @@ function Education() {
     <div className='py-3 mx-3'>
       <h2 className='sub-heading'> Education </h2>
 
-      <form onSubmit={submitEducation} className='pt-15 grid grid-cols-1 gap-2 lg:grid-cols-2'>
-        <p className='definition'> Fill in the details of your latest education. </p>
+      <form onSubmit={submitEducation} className='pt-15' >
+        <p className='definition pl-3'> Fill in the details of your latest education. </p>
 
-        <input type="text"
-          name='institution'
-          value={education.institution}
-          onChange={handleChange}
-          className='resume-input'
-          placeholder='institution name...' />
+        <div className='pt-5 grid grid-cols-1 gap-2 lg:grid-cols-2'>
+          <input type="text"
+            name='institution'
+            value={education.institution}
+            onChange={handleChange}
+            className='resume-input'
+            placeholder='institution name...' />
 
-        <input type="text"
-          name='university'
-          value={education.university}
-          onChange={handleChange}
-          className='resume-input'
-          placeholder='university name...' />
+          <input type="text"
+            name='university'
+            value={education.university}
+            onChange={handleChange}
+            className='resume-input'
+            placeholder='university name...' />
 
-        <input type="text"
-          name='course'
-          value={education.course}
-          onChange={handleChange}
-          className='resume-input'
-          placeholder='course' />
+          <input type="text"
+            name='course'
+            value={education.course}
+            onChange={handleChange}
+            className='resume-input'
+            placeholder='course' />
 
-        <input type="text"
-          name='place'
-          value={education.place}
-          onChange={handleChange}
-          className='resume-input'
-          placeholder='place' />
+          <input type="text"
+            name='place'
+            value={education.place}
+            onChange={handleChange}
+            className='resume-input'
+            placeholder='place' />
 
-        <input type="month"
-          name='start'
-          value={education.start}
-          onChange={handleChange}
-          className='resume-input'
-          placeholder='start' />
+          <input type="month"
+            name='start'
+            value={education.start}
+            onChange={handleChange}
+            className='resume-input'
+            placeholder='start' />
 
-        <input type="month"
-          name='end'
-          value={education.end}
-          onChange={handleChange}
-          className='resume-input'
-          placeholder='end' />
+          <input type="month"
+            name='end'
+            value={education.end}
+            onChange={handleChange}
+            className='resume-input'
+            placeholder='end' />
 
+        </div>
         <button type='submit' className='button-3 absolute right-2 top-10' > <FaChevronRight /> </button>
       </form>
     </div>

@@ -34,7 +34,7 @@ function Certification() {
       <form onSubmit={handleSubmit} className='pt-15 grid grid-cols-1' >
         <p className='definition'> Fill in the details of any relevant certifications or workshops you have completed. </p>
         {certificates.map((cert, i) =>
-          <div key={i} className='p-3 space-y-3 shadow-xl rounded-2xl m-2' >
+          <div key={i} className='p-3 space-y-3 shadow-xl rounded-2xl m-2 flex flex-col' >
             <h1 className='tag-line'> CERTIFICATE/WORKSHOP #{i + 1} </h1>
 
             <input type="text"
@@ -55,7 +55,7 @@ function Certification() {
         <button type='submit' className='button-3 absolute right-2 top-10' > <FaChevronRight /> </button>
       </form>
       <div className='flex justify-center items-center mt-5'>
-        <button onClick={AddNewRow} className='button-1 max-w-50'> + New Project </button>
+        <button onClick={AddNewRow} className='button-1 max-w-50'> + New Cert </button>
       </div>
     </div>
   )

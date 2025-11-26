@@ -33,12 +33,15 @@ const Projects = () => {
 
             <form onSubmit={submitProjects} className='pt-15 grid grid-cols-1' >
                 <p className='definition'> Fill in the details of your most relevant projects that showcase your skills. </p>
+
                 {project.map((pro, index) =>
                     <div key={index} className='p-3 space-y-3 shadow-xl rounded-2xl m-2' >
+                        <h1 className='tag-line'> PROJECTS #{index + 1}</h1>
+
                         <input type="text"
                             name='title'
                             value={pro.title}
-                            className='resume-input'
+                            className='resume-input md:mr-5'
                             onChange={(e) => handleChange(e, index)}
                             placeholder='Title...' />
 
