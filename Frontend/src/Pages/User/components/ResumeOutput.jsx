@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const ResumeOutput = () => {
+  const [resume, setResume] = useState({})
+
   return (
-    <div>ResumeOutput</div>
+    <div>
+      
+    </div>
   )
 }
 
