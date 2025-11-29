@@ -14,7 +14,6 @@ import itemLoading from '../../assets/Animations/itemLoading.lottie'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import { toast } from 'react-toastify'
 import { MY_RESUMES, DELETE_RESUME } from '../../Components/Constants/Queries'
-import { EntityStore } from '@apollo/client/cache'
 
 function UserHome() {
   const [selectedResume, setSelectedResume] = useState(null)
