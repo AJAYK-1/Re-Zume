@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import ResumePDF from '../../Components/Utilities/ResumePDF'
 import { RiArrowGoBackFill, RiDeleteBin2Line } from 'react-icons/ri';
 import { FaRegEdit } from 'react-icons/fa';
+import { useQuery } from '@apollo/client/react';
 
 const ResumeOutput = () => {
   const [resume, setResume] = useState({})
+  const { data, loading, error } = useQuery()
 
   return (
     <>
