@@ -7,6 +7,7 @@ import { startStandaloneServer } from '@apollo/server/standalone'
 import { typeDefinitions } from './GraphQL/Schema.js'
 import resolvers from './GraphQL/Resolvers.js'
 import { Authorization } from './Middlewares/Authorization.js'
+import { OpenAI } from "openai";
 
 const app = express()
 config()
