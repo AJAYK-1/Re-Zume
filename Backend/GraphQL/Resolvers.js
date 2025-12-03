@@ -2,6 +2,7 @@ import ResumeDB from "../Models/ResumeModel.js"
 import UserDB from "../Models/UserModel.js"
 import jwt from 'jsonwebtoken'
 import ResumeGenerator from "../Utilities/ResumeGenerator.js"
+import OpenAI from "openai"
 
 const resolvers = {
     Query: {
@@ -140,6 +141,29 @@ const resolvers = {
 
                 await ResumeDB.deleteOne({ _id: id })
                 return { success: true, message: 'Resume deleted' }
+            } catch (error) {
+                console.log(error.message);
+                return { success: false, message: "Server Error" }
+            }
+        },
+        finalResume: async (_, args, context) => {
+            try {
+                if (!context.isAuthenticated) return { success: false, message: 'Unauthorised User...' }
+
+                const { userId, name, summary, email, phone, gender,
+                    address, linkedIn, gitHub, portfolio, education,
+                    experience, skills, projects, certifications } = args.resume
+
+                const client = new OpenAI({
+                    apiKey: process.env.OPENAI_API_KEY,
+                })
+
+                const response = await client.responses.create({
+                    model: 'gpt-5',
+                    instructions: '',
+                    input: '',
+                })
+
             } catch (error) {
                 console.log(error.message);
                 return { success: false, message: "Server Error" }
