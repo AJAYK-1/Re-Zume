@@ -158,12 +158,14 @@ const resolvers = {
                     apiKey: process.env.OPENAI_API_KEY,
                 })
 
-                const response = await client.responses.create({
+                const AIsummary = await client.responses.create({
                     model: 'gpt-5',
-                    instructions: '',
-                    input: '',
+                    instructions: 'act as a resume reviewer.',
+                    input: `tailor this summary into an impressive one with 3 sentences: ${summary}`,
                 })
-
+                console.log(AIsummary);
+                
+                
             } catch (error) {
                 console.log(error.message);
                 return { success: false, message: "Server Error" }
