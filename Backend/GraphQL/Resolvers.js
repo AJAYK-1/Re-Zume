@@ -163,9 +163,14 @@ const resolvers = {
                     instructions: 'act as a resume reviewer.',
                     input: `tailor this summary into an impressive one with 3 sentences: ${summary}`,
                 })
+
+                const AIexperience = await client.responses.create({
+                    model: 'gpt-5',
+                    instructions: 'act as a resume reviewer.',
+                    input: `tailor this work experience into an impressive one: ${experience}`,
+                })
                 console.log(AIsummary);
-                
-                
+
             } catch (error) {
                 console.log(error.message);
                 return { success: false, message: "Server Error" }
