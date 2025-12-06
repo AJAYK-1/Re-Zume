@@ -170,7 +170,8 @@ const resolvers = {
                     input: `tailor this work experience into an impressive one: ${experience}`,
                 })
                 console.log(AIsummary);
-
+                
+                return { success: true, message: 'Resume created successfully...' }
             } catch (error) {
                 console.log(error.message);
                 return { success: false, message: "Server Error" }

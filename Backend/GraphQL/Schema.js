@@ -101,6 +101,7 @@ export const typeDefinitions = `#graphql
         userSignIn(email: String!, password: String!): Response
         createResume(resume: ResumeInput!): Response
         deleteResume(id: ID!): Response
+        finalResume(resume:ResumeInput!): Response
     }
 
     input AddressInput {
