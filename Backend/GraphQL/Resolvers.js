@@ -107,10 +107,25 @@ const resolvers = {
                     address, linkedIn, gitHub, portfolio, education,
                     experience, skills, projects, certifications } = args.resume
 
-                experience.map((exp) => {
+                const client = new OpenAI({
+                    apiKey: process.env.OPENAI_API_KEY,
+                })
+
+                const AIsummary = await client.responses.create({
+                    model: 'gpt-5',
+                    instructions: 'act as a resume reviewer.',
+                    input: `tailor this summary into an impressive one with 3 sentences: ${summary}`,
+                })
+
+                experience.map(async (exp) => {
                     exp.from = new Date(exp.from).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
                     exp.to = new Date(exp.to).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
-                    exp.description = exp.description.split('. ').map((desc) =>
+                    const AIexperience = await client.responses.create({
+                        model: 'gpt-5',
+                        instructions: 'act as a resume reviewer.',
+                        input: `tailor this work experience into an impressive one: ${exp.description}`,
+                    })
+                    exp.description = AIexperience.split('. ').map((desc) =>
                         desc.endsWith('.') ? desc : desc += '.'
                     )
                 })
@@ -119,7 +134,7 @@ const resolvers = {
                 education.end = new Date(education.end).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
 
                 const newResume = await ResumeDB.create({
-                    userId, name, summary, email, phone, gender,
+                    userId, name, summary: AIsummary, email, phone, gender,
                     address, linkedIn, gitHub, portfolio, education,
                     experience, skills, projects, certifications
                 })
@@ -146,37 +161,6 @@ const resolvers = {
                 return { success: false, message: "Server Error" }
             }
         },
-        finalResume: async (_, args, context) => {
-            try {
-                if (!context.isAuthenticated) return { success: false, message: 'Unauthorised User...' }
-
-                const { userId, name, summary, email, phone, gender,
-                    address, linkedIn, gitHub, portfolio, education,
-                    experience, skills, projects, certifications } = args.resume
-
-                const client = new OpenAI({
-                    apiKey: process.env.OPENAI_API_KEY,
-                })
-
-                const AIsummary = await client.responses.create({
-                    model: 'gpt-5',
-                    instructions: 'act as a resume reviewer.',
-                    input: `tailor this summary into an impressive one with 3 sentences: ${summary}`,
-                })
-
-                const AIexperience = await client.responses.create({
-                    model: 'gpt-5',
-                    instructions: 'act as a resume reviewer.',
-                    input: `tailor this work experience into an impressive one: ${experience}`,
-                })
-                console.log(AIsummary);
-                
-                return { success: true, message: 'Resume created successfully...' }
-            } catch (error) {
-                console.log(error.message);
-                return { success: false, message: "Server Error" }
-            }
-        }
     }
 }
 
