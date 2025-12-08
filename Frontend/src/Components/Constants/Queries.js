@@ -105,3 +105,65 @@ export const DELETE_RESUME = gql`
     }
   }
 `
+
+export const CREATE_RESUME = gql`
+  mutation CreateResume($resume: ResumeInput!) {
+  createResume(resume: $resume) {
+    success
+    message
+    resume {
+      id
+      resumeType
+      name
+      summary
+      phone
+      userId
+      gender
+      email
+      address {
+        country
+        state
+        district
+        city
+        pincode
+      }
+      certifications {
+        certificateName
+        provider
+      }
+      education {
+        course
+        university
+        institution
+        start
+        end
+        place
+      }
+      experience {
+        company
+        position
+        place
+        from
+        to
+        description
+      }
+      projects {
+        title
+        details
+        link
+      }
+      skills {
+        technical {
+          frontend
+          backend
+          languages
+          databases
+          toolsAndDevOps
+          others
+        }
+        soft
+      }
+    }
+  }
+}
+`
